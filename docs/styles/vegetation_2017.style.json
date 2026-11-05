@@ -1,0 +1,37 @@
+{
+ "version": 8,
+ "name": "vegetation_2017",
+ "metadata": {
+  "carmaConf": {
+   "layerInfo": {
+    "title": "Vegetation 2017 (Sentinel-2, EVI)",
+    "description": "Dichte Vegetation im Sommer 2017: EVI > 0,45. Quelle: Copernicus Sentinel-2 L2A (Median-Mosaik 25.07.-15.09., 10 m, Microsoft Planetary Computer); Stadtgrenze (c) OpenStreetMap contributors (ODbL). Hinweis: EVI > 0,45 zeigt dichte Vegetation insgesamt (Baeume und dichte Wiesen), keine einzelnen Baeume. Jahresvergleiche sind witterungsabhaengig (z. B. Duerresommer 2018/2020). In den Aenderungslayern sind grosse eckige Flaechen meist Ackerland (Fruchtfolge/Erntezeitpunkt), keine Baumverluste; schmale Streifen sind Randeffekte.",
+    "keywords": [],
+    "tags": [
+     "Sentinel-2",
+     "Vegetation",
+     "Zeitreihe",
+     "2017"
+    ]
+   },
+   "instant": true
+  }
+ },
+ "sources": {
+  "veg2017": {
+   "type": "geojson",
+   "data": "https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/geojson/vegetation_2017.geojson"
+  }
+ },
+ "layers": [
+  {
+   "id": "veg2017-fill",
+   "type": "fill",
+   "source": "veg2017",
+   "paint": {
+    "fill-color": "#2E7D32",
+    "fill-opacity": 0.55
+   }
+  }
+ ]
+}

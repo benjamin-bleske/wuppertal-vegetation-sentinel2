@@ -1,0 +1,41 @@
+{
+ "version": 8,
+ "name": "schummerung_wuppertal",
+ "metadata": {
+  "carmaConf": {
+   "layerInfo": {
+    "title": "Gelaendeschummerung Wuppertal (DGM1 NRW)",
+    "description": "Multidirektionale Schummerung aus dem DGM1 NRW (Geobasis NRW, dl-de/zero-2-0), Zoom 9-14, ausserhalb der Stadtgrenze ausgeblendet.",
+    "keywords": [],
+    "tags": [
+     "DGM",
+     "Schummerung",
+     "Gelaende"
+    ]
+   },
+   "instant": true
+  }
+ },
+ "sources": {
+  "hs": {
+   "type": "raster",
+   "tiles": [
+    "https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/tiles/hillshade/{z}/{x}/{y}.png"
+   ],
+   "tileSize": 256,
+   "minzoom": 9,
+   "maxzoom": 14,
+   "attribution": "Geobasis NRW (dl-de/zero-2-0)"
+  }
+ },
+ "layers": [
+  {
+   "id": "hs-raster",
+   "type": "raster",
+   "source": "hs",
+   "paint": {
+    "raster-opacity": 0.6
+   }
+  }
+ ]
+}

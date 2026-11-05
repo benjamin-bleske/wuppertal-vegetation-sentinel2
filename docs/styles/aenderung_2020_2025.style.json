@@ -1,0 +1,48 @@
+{
+ "version": 8,
+ "name": "aenderung_2020_2025",
+ "metadata": {
+  "carmaConf": {
+   "layerInfo": {
+    "title": "Vegetationsaenderung 2020 bis 2025 (Sentinel-2, EVI)",
+    "description": "Rot: Vegetation 2020 vorhanden, 2025 nicht (Verlust). Blau: neu 2025 (Zuwachs). Nur Pixel, die in beiden Jahren gueltig beobachtet wurden. Quelle: Copernicus Sentinel-2 L2A (Median-Mosaik 25.07.-15.09., 10 m, Microsoft Planetary Computer); Stadtgrenze (c) OpenStreetMap contributors (ODbL). Hinweis: EVI > 0,45 zeigt dichte Vegetation insgesamt (Baeume und dichte Wiesen), keine einzelnen Baeume. Jahresvergleiche sind witterungsabhaengig (z. B. Duerresommer 2018/2020). In den Aenderungslayern sind grosse eckige Flaechen meist Ackerland (Fruchtfolge/Erntezeitpunkt), keine Baumverluste; schmale Streifen sind Randeffekte.",
+    "keywords": [],
+    "tags": [
+     "Sentinel-2",
+     "Vegetation",
+     "Aenderung",
+     "2020-2025"
+    ]
+   },
+   "instant": true
+  }
+ },
+ "sources": {
+  "aend20202025": {
+   "type": "geojson",
+   "data": "https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/geojson/aenderung_2020_2025.geojson"
+  }
+ },
+ "layers": [
+  {
+   "id": "aend20202025-fill",
+   "type": "fill",
+   "source": "aend20202025",
+   "paint": {
+    "fill-color": [
+     "match",
+     [
+      "get",
+      "klasse"
+     ],
+     "Verlust",
+     "#D32F2F",
+     "Zuwachs",
+     "#1976D2",
+     "#999999"
+    ],
+    "fill-opacity": 0.75
+   }
+  }
+ ]
+}
