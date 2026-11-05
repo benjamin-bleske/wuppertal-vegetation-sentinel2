@@ -4,16 +4,46 @@ Zeitreihe der dichten Vegetation im Stadtgebiet Wuppertal aus Sentinel-2-Sommerm
 MapLibre-Style-JSON zum Einbinden per Drag & Drop in den Digital Twin Wuppertal.
 
 ## Einbinden
-Die URL einer Style-JSON (Endung `.json`) auf das Portalfenster ziehen:
-https://digital-twin-wuppertal-live.github.io/geoportal/#/
+Link auf das Portalfenster ziehen (https://digital-twin-wuppertal-live.github.io/geoportal/#/) oder die URL kopieren.
 
-Basis-URL: `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/`
+**Vegetation je Jahr**
 
-| Layer | Style-JSON |
-|---|---|
-| Vegetation je Jahr | `styles/vegetation_JAHR.style.json` |
-| Veränderung (Verlust rot, Zuwachs blau) | `styles/aenderung_JAHR1_JAHR2.style.json` |
-| Geländeschummerung (DGM1) | `styles/schummerung.style.json` |
+- [Vegetation 2015](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_2015.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_2015.style.json`
+- [Vegetation 2016](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_2016.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_2016.style.json`
+- [Vegetation 2017](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_2017.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_2017.style.json`
+- [Vegetation 2018](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_2018.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_2018.style.json`
+- [Vegetation 2019](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_2019.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_2019.style.json`
+- [Vegetation 2020](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_2020.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_2020.style.json`
+- [Vegetation 2021](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_2021.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_2021.style.json`
+- [Vegetation 2022](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_2022.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_2022.style.json`
+- [Vegetation 2023](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_2023.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_2023.style.json`
+- [Vegetation 2024](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_2024.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_2024.style.json`
+- [Vegetation 2025](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_2025.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_2025.style.json`
+
+**Veränderung**
+
+- [Veränderung 2015 → 2020 (Verlust rot, Zuwachs blau)](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/aenderung_2015_2020.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/aenderung_2015_2020.style.json`
+- [Veränderung 2015 → 2025 (Verlust rot, Zuwachs blau)](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/aenderung_2015_2025.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/aenderung_2015_2025.style.json`
+- [Veränderung 2020 → 2025 (Verlust rot, Zuwachs blau)](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/aenderung_2020_2025.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/aenderung_2020_2025.style.json`
+
+**Untergrund**
+
+- [Geländeschummerung (DGM1)](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/schummerung.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/schummerung.style.json`
 
 ## Methode
 - Quelle: Copernicus Sentinel-2 L2A (Microsoft Planetary Computer), 10 m, Fenster **25.07.–15.09.** je Jahr.
