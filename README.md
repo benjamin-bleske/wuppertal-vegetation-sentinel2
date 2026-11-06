@@ -55,6 +55,21 @@ Link auf das Portalfenster ziehen (https://digital-twin-wuppertal-live.github.io
 - [Geländeschummerung (DGM1)](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/schummerung.style.json) 
   `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/schummerung.style.json`
 
+**Historische Luftbilder (Jahrgänge für Wuppertal)**
+
+- [Luftbild 2010 (Geobasis NRW)](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/luftbild_2010.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/luftbild_2010.style.json`
+- [Luftbild 2013 (Geobasis NRW)](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/luftbild_2013.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/luftbild_2013.style.json`
+- [Luftbild 2016 (Geobasis NRW)](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/luftbild_2016.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/luftbild_2016.style.json`
+- [Luftbild 2019 (Geobasis NRW)](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/luftbild_2019.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/luftbild_2019.style.json`
+- [Luftbild 2021 (Geobasis NRW)](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/luftbild_2021.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/luftbild_2021.style.json`
+- [Luftbild 2023 (Geobasis NRW)](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/luftbild_2023.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/luftbild_2023.style.json`
+
 ## Methode
 - Quelle: Copernicus Sentinel-2 L2A (Microsoft Planetary Computer), 10 m, Fenster **25.07.–15.09.** je Jahr.
 - Wolkenfreies Median-Mosaik (`scripts/composite.py`): Szenenklassifikation SCL 2, 4, 5, 6, 7 gültig, Maske 2 px aufgeweitet, mind. 2 klare Beobachtungen je Pixel. SCL-Klasse 2 („dunkel“) bleibt gültig, weil ältere Prozessierungs-Baselines urbane Flächen so einstufen.

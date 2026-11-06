@@ -3,6 +3,7 @@ import os, re
 BASE = "https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/"
 names = sorted(f for f in os.listdir("docs/styles") if f.endswith(".json"))
 def label(n):
+    if n.startswith("luftbild_"): return "Luftbild " + n.split("_")[1].split(".")[0] + " (Geobasis NRW)"
     if n.startswith("vegetation_zeitreihe_or"): return "Zeitreihe 2015–2025, Test: Mehrfachauswahl (OR)"
     if n.startswith("vegetation_zeitreihe"): return "Zeitreihe 2015–2025 mit Jahres-Buttons"
     if n.startswith("vegetation_"): return "Vegetation " + n.split("_")[1].split(".")[0]
@@ -11,7 +12,8 @@ def label(n):
 groups = [("Zeitreihe mit Filter-Buttons (eine Datei, 11 Jahre)", [n for n in names if n.startswith("vegetation_zeitreihe")]),
           ("Vegetation je Jahr", [n for n in names if n.startswith("vegetation_2")]),
           ("Veränderung", [n for n in names if n.startswith("aenderung_")]),
-          ("Untergrund", [n for n in names if n.startswith("schummerung")])]
+          ("Untergrund", [n for n in names if n.startswith("schummerung")]),
+          ("Historische Luftbilder (Jahrgänge für Wuppertal)", [n for n in names if n.startswith("luftbild_")])]
 
 PDF = "https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/Methodik_Vegetation_Wuppertal_2015_2016.pdf"
 md = "## Methodik\n[Methodik als PDF (Workflow am Beispiel 2015 und 2016)](" + PDF + ")\n\n## Einbinden\nLink auf das Portalfenster ziehen (https://digital-twin-wuppertal-live.github.io/geoportal/#/) oder die URL kopieren.\n\n"
