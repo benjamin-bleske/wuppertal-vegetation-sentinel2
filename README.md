@@ -9,6 +9,13 @@ MapLibre-Style-JSON zum Einbinden per Drag & Drop in den Digital Twin Wuppertal.
 ## Einbinden
 Link auf das Portalfenster ziehen (https://digital-twin-wuppertal-live.github.io/geoportal/#/) oder die URL kopieren.
 
+**Zeitreihe mit Filter-Buttons (eine Datei, 11 Jahre)**
+
+- [Zeitreihe 2015–2025 mit Jahres-Buttons](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_zeitreihe.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_zeitreihe.style.json`
+- [Zeitreihe 2015–2025, Test: Mehrfachauswahl (OR)](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_zeitreihe_or.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_zeitreihe_or.style.json`
+
 **Vegetation je Jahr**
 
 - [Vegetation 2015](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_2015.style.json) 

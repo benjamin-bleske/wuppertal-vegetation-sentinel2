@@ -3,10 +3,13 @@ import os, re
 BASE = "https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/"
 names = sorted(f for f in os.listdir("docs/styles") if f.endswith(".json"))
 def label(n):
+    if n.startswith("vegetation_zeitreihe_or"): return "Zeitreihe 2015–2025, Test: Mehrfachauswahl (OR)"
+    if n.startswith("vegetation_zeitreihe"): return "Zeitreihe 2015–2025 mit Jahres-Buttons"
     if n.startswith("vegetation_"): return "Vegetation " + n.split("_")[1].split(".")[0]
     if n.startswith("aenderung_"): a, b = n.split("_")[1], n.split("_")[2].split(".")[0]; return f"Veränderung {a} → {b} (Verlust rot, Zuwachs blau)"
     return "Geländeschummerung (DGM1)"
-groups = [("Vegetation je Jahr", [n for n in names if n.startswith("vegetation_")]),
+groups = [("Zeitreihe mit Filter-Buttons (eine Datei, 11 Jahre)", [n for n in names if n.startswith("vegetation_zeitreihe")]),
+          ("Vegetation je Jahr", [n for n in names if n.startswith("vegetation_2")]),
           ("Veränderung", [n for n in names if n.startswith("aenderung_")]),
           ("Untergrund", [n for n in names if n.startswith("schummerung")])]
 

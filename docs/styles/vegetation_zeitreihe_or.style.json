@@ -1,0 +1,139 @@
+{
+ "version": 8,
+ "name": "vegetation_zeitreihe_or",
+ "metadata": {
+  "carmaConf": {
+   "layerInfo": {
+    "title": "Vegetation Zeitreihe 2015-2025 (Test: Mehrfachauswahl)",
+    "description": "Dichte Vegetation (EVI > 0,45) im Sommer 2015-2025, Jahr per Button waehlen. ACHTUNG: Die Reihe schwankt mit der Witterung (Tiefpunkte in den Duerrejahren 2018 und 2020) und belegt keinen Baumrueckgang. Quelle: Copernicus Sentinel-2 L2A (Median-Mosaik 25.07.-15.09., 10 m, Microsoft Planetary Computer); Stadtgrenze (c) OpenStreetMap contributors (ODbL). Hinweis: EVI > 0,45 zeigt dichte Vegetation insgesamt (Baeume und dichte Wiesen), keine einzelnen Baeume. Jahresvergleiche sind witterungsabhaengig (z. B. Duerresommer 2018/2020). In den Aenderungslayern sind grosse eckige Flaechen meist Ackerland (Fruchtfolge/Erntezeitpunkt), keine Baumverluste; schmale Streifen sind Randeffekte.",
+    "keywords": [],
+    "tags": [
+     "Sentinel-2",
+     "Vegetation",
+     "Zeitreihe"
+    ]
+   },
+   "instant": true,
+   "filterConfig": {
+    "layerPattern": "veg-",
+    "filterMode": "or",
+    "filterType": "button",
+    "allLabel": "Alle Jahre",
+    "filters": [
+     {
+      "key": "2015",
+      "label": "2015",
+      "propertyName": "jahr",
+      "propertyValue": "2015"
+     },
+     {
+      "key": "2016",
+      "label": "2016",
+      "propertyName": "jahr",
+      "propertyValue": "2016"
+     },
+     {
+      "key": "2017",
+      "label": "2017",
+      "propertyName": "jahr",
+      "propertyValue": "2017"
+     },
+     {
+      "key": "2018",
+      "label": "2018",
+      "propertyName": "jahr",
+      "propertyValue": "2018"
+     },
+     {
+      "key": "2019",
+      "label": "2019",
+      "propertyName": "jahr",
+      "propertyValue": "2019"
+     },
+     {
+      "key": "2020",
+      "label": "2020",
+      "propertyName": "jahr",
+      "propertyValue": "2020"
+     },
+     {
+      "key": "2021",
+      "label": "2021",
+      "propertyName": "jahr",
+      "propertyValue": "2021"
+     },
+     {
+      "key": "2022",
+      "label": "2022",
+      "propertyName": "jahr",
+      "propertyValue": "2022"
+     },
+     {
+      "key": "2023",
+      "label": "2023",
+      "propertyName": "jahr",
+      "propertyValue": "2023"
+     },
+     {
+      "key": "2024",
+      "label": "2024",
+      "propertyName": "jahr",
+      "propertyValue": "2024"
+     },
+     {
+      "key": "2025",
+      "label": "2025",
+      "propertyName": "jahr",
+      "propertyValue": "2025"
+     }
+    ]
+   }
+  }
+ },
+ "sources": {
+  "veg": {
+   "type": "geojson",
+   "data": "https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/geojson/vegetation_alle.geojson"
+  }
+ },
+ "layers": [
+  {
+   "id": "veg-fill",
+   "type": "fill",
+   "source": "veg",
+   "paint": {
+    "fill-color": [
+     "match",
+     [
+      "get",
+      "jahr"
+     ],
+     "2015",
+     "#8E24AA",
+     "2016",
+     "#5E35B1",
+     "2017",
+     "#3949AB",
+     "2018",
+     "#1E88E5",
+     "2019",
+     "#00ACC1",
+     "2020",
+     "#00897B",
+     "2021",
+     "#43A047",
+     "2022",
+     "#7CB342",
+     "2023",
+     "#C0CA33",
+     "2024",
+     "#F9A825",
+     "2025",
+     "#EF6C00",
+     "#2E7D32"
+    ],
+    "fill-opacity": 0.55
+   }
+  }
+ ]
+}
