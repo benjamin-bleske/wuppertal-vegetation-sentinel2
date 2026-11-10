@@ -5,7 +5,7 @@
   "carmaConf": {
    "layerInfo": {
     "title": "Vegetation 2017 (Sentinel-2, EVI)",
-    "description": "Dichte Vegetation im Sommer 2017: EVI > 0,45. Quelle: Copernicus Sentinel-2 L2A (Median-Mosaik 25.07.-15.09., 10 m, Microsoft Planetary Computer); Stadtgrenze (c) OpenStreetMap contributors (ODbL). Hinweis: EVI > 0,45 zeigt dichte Vegetation insgesamt (Baeume und dichte Wiesen), keine einzelnen Baeume. Jahresvergleiche sind witterungsabhaengig (z. B. Duerresommer 2018/2020). In den Aenderungslayern sind grosse eckige Flaechen meist Ackerland (Fruchtfolge/Erntezeitpunkt), keine Baumverluste; schmale Streifen sind Randeffekte.",
+    "description": "Dichte Vegetation im Sommer 2017: EVI > 0,45. Quelle: Copernicus Sentinel-2 L2A (Median-Mosaik 25.07.-15.09., 10 m, Microsoft Planetary Computer); Stadtgrenze (c) OpenStreetMap contributors (ODbL). Originalquellen zum Nachpruefen: Sentinel-2 L2A https://planetarycomputer.microsoft.com/dataset/sentinel-2-l2a ; Mission https://sentinels.copernicus.eu/copernicus/sentinel-2 ; EVI nach Huete et al. 2002 https://doi.org/10.1016/S0034-4257(02)00096-2 ; Stadtgrenze https://www.openstreetmap.org/copyright ; Methode, Skripte und Grenzen: https://github.com/benjamin-bleske/wuppertal-vegetation-sentinel2#readme . Hinweis: EVI > 0,45 zeigt dichte Vegetation insgesamt (Baeume und dichte Wiesen), keine einzelnen Baeume. Jahresvergleiche sind witterungsabhaengig (z. B. Duerresommer 2018/2020). In den Aenderungslayern sind grosse eckige Flaechen meist Ackerland (Fruchtfolge/Erntezeitpunkt), keine Baumverluste; schmale Streifen sind Randeffekte.",
     "keywords": [],
     "tags": [
      "Sentinel-2",

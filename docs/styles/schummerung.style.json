@@ -5,7 +5,7 @@
   "carmaConf": {
    "layerInfo": {
     "title": "Gelaendeschummerung Wuppertal (DGM1 NRW)",
-    "description": "Multidirektionale Schummerung aus dem DGM1 NRW (Geobasis NRW, dl-de/zero-2-0), Zoom 9-14, ausserhalb der Stadtgrenze ausgeblendet.",
+    "description": "Multidirektionale Schummerung aus dem DGM1 NRW (Geobasis NRW, dl-de/zero-2-0), Zoom 9-14, ausserhalb der Stadtgrenze ausgeblendet. Originalquelle DGM1: https://www.opengeodata.nrw.de/produkte/geobasis/hm/dgm1_tiff/ ; Methode: https://github.com/benjamin-bleske/wuppertal-vegetation-sentinel2#readme",
     "keywords": [],
     "tags": [
      "DGM",

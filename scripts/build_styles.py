@@ -6,6 +6,10 @@ OUT = "out/styles"
 os.makedirs(OUT, exist_ok=True)
 QUELLE = ("Quelle: Copernicus Sentinel-2 L2A (Median-Mosaik 25.07.-15.09., 10 m, Microsoft Planetary Computer); "
           "Stadtgrenze (c) OpenStreetMap contributors (ODbL). ")
+REPO = "https://github.com/benjamin-bleske/wuppertal-vegetation-sentinel2"
+LINKS = ("Originalquellen zum Nachpruefen: Sentinel-2 L2A https://planetarycomputer.microsoft.com/dataset/sentinel-2-l2a ; "
+         "Mission https://sentinels.copernicus.eu/copernicus/sentinel-2 ; EVI nach Huete et al. 2002 https://doi.org/10.1016/S0034-4257(02)00096-2 ; "
+         "Stadtgrenze https://www.openstreetmap.org/copyright ; Methode, Skripte und Grenzen: " + REPO + "#readme . ")
 HINWEIS = ("Hinweis: EVI > 0,45 zeigt dichte Vegetation insgesamt (Baeume und dichte Wiesen), keine einzelnen Baeume. "
            "Jahresvergleiche sind witterungsabhaengig (z. B. Duerresommer 2018/2020). In den Aenderungslayern sind grosse eckige Flaechen meist Ackerland (Fruchtfolge/Erntezeitpunkt), keine Baumverluste; schmale Streifen sind Randeffekte.")
 
@@ -23,7 +27,7 @@ def veg(year):
     sid = f"veg{year}"
     save(f"vegetation_{year}.style.json", style(
         f"vegetation_{year}", f"Vegetation {year} (Sentinel-2, EVI)",
-        f"Dichte Vegetation im Sommer {year}: EVI > 0,45. {QUELLE}{HINWEIS}",
+        f"Dichte Vegetation im Sommer {year}: EVI > 0,45. {QUELLE}{LINKS}{HINWEIS}",
         ["Sentinel-2", "Vegetation", "Zeitreihe", str(year)],
         {sid: {"type": "geojson", "data": f"{BASE}/geojson/vegetation_{year}.geojson"}},
         [{"id": f"{sid}-fill", "type": "fill", "source": sid,
@@ -33,7 +37,7 @@ def change(y1, y2):
     sid = f"aend{y1}{y2}"
     save(f"aenderung_{y1}_{y2}.style.json", style(
         f"aenderung_{y1}_{y2}", f"Vegetationsaenderung {y1} bis {y2} (Sentinel-2, EVI)",
-        f"Rot: Vegetation {y1} vorhanden, {y2} nicht (Verlust). Blau: neu {y2} (Zuwachs). Nur Pixel, die in beiden Jahren gueltig beobachtet wurden. {QUELLE}{HINWEIS}",
+        f"Rot: Vegetation {y1} vorhanden, {y2} nicht (Verlust). Blau: neu {y2} (Zuwachs). Nur Pixel, die in beiden Jahren gueltig beobachtet wurden. {QUELLE}{LINKS}{HINWEIS}",
         ["Sentinel-2", "Vegetation", "Aenderung", f"{y1}-{y2}"],
         {sid: {"type": "geojson", "data": f"{BASE}/geojson/aenderung_{y1}_{y2}.geojson"}},
         [{"id": f"{sid}-fill", "type": "fill", "source": sid,
@@ -43,7 +47,8 @@ def change(y1, y2):
 def hillshade():
     save("schummerung.style.json", style(
         "schummerung_wuppertal", "Gelaendeschummerung Wuppertal (DGM1 NRW)",
-        "Multidirektionale Schummerung aus dem DGM1 NRW (Geobasis NRW, dl-de/zero-2-0), Zoom 9-14, ausserhalb der Stadtgrenze ausgeblendet.",
+        "Multidirektionale Schummerung aus dem DGM1 NRW (Geobasis NRW, dl-de/zero-2-0), Zoom 9-14, ausserhalb der Stadtgrenze ausgeblendet. "
+        "Originalquelle DGM1: https://www.opengeodata.nrw.de/produkte/geobasis/hm/dgm1_tiff/ ; Methode: " + REPO + "#readme",
         ["DGM", "Schummerung", "Gelaende"],
         {"hs": {"type": "raster", "tiles": [f"{BASE}/tiles/hillshade/{{z}}/{{x}}/{{y}}.png"],
                 "tileSize": 256, "minzoom": 9, "maxzoom": 14,

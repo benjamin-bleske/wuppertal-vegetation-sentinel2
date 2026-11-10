@@ -1,6 +1,6 @@
 """Kombiniert die Jahres-Vegetation zu einer Datei (Attribut jahr, String) und erzeugt die Zeitreihen-Styles mit Filter-Buttons."""
 import json, os
-from build_styles import BASE, QUELLE, HINWEIS, style
+from build_styles import BASE, QUELLE, LINKS, HINWEIS, style
 
 YEARS = list(range(2015, 2026))
 FARBEN = ["#8E24AA", "#5E35B1", "#3949AB", "#1E88E5", "#00ACC1", "#00897B", "#43A047", "#7CB342", "#C0CA33", "#F9A825", "#EF6C00"]
@@ -17,7 +17,7 @@ print(len(feats), "Features")
 farbe = ["match", ["get", "jahr"]] + [x for y, c in zip(YEARS, FARBEN) for x in (str(y), c)] + ["#2E7D32"]
 DESC = ("Dichte Vegetation (EVI > 0,45) im Sommer 2015-2025, Jahr per Button waehlen. "
         "ACHTUNG: Die Reihe schwankt mit der Witterung (Tiefpunkte in den Duerrejahren 2018 und 2020) und belegt keinen Baumrueckgang. "
-        + QUELLE + HINWEIS)
+        + QUELLE + LINKS + HINWEIS)
 
 def zeitreihe(mode, fname, title):
     s = style(f"vegetation_zeitreihe_{mode}", title, DESC, ["Sentinel-2", "Vegetation", "Zeitreihe"],
