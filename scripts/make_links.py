@@ -17,7 +17,7 @@ groups = [("Zeitreihe mit Filter-Buttons (eine Datei, 11 Jahre)", [n for n in na
 
 PDF = "https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/Methodik_Vegetation_Wuppertal_2015_2016.pdf"
 ERK = "https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/erklaerung/"
-md = "## Methodik\n[Verständliche Erklärung in Bildern (für Laien, mit Prüfbeispielen)](" + ERK + ")\n\n[Methodik als PDF (Workflow am Beispiel 2015 und 2016)](" + PDF + ")\n\n## Einbinden\nLink auf das Portalfenster ziehen (https://digital-twin-wuppertal-live.github.io/geoportal/#/) oder die URL kopieren.\n\n"
+md = "## Methodik\n[Verständliche Erklärung in Bildern (für Laien, mit Prüfbeispielen)](" + ERK + ")\n\n[Test: Welche Satellitengröße trennt Bäume? (NDVI, Jahresschwankung, nDOM-Referenz)](METHODIK_Baummaske.md)\n\n[Methodik als PDF (Workflow am Beispiel 2015 und 2016)](" + PDF + ")\n\n## Einbinden\nLink auf das Portalfenster ziehen (https://digital-twin-wuppertal-live.github.io/geoportal/#/) oder die URL kopieren.\n\n"
 for g, ns in groups:
     md += f"**{g}**\n\n" + "".join(f"- [{label(n)}]({BASE}{n}) \n  `{BASE}{n}`\n" for n in ns) + "\n"
 r = open("README.md").read()

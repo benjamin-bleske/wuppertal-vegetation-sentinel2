@@ -1,0 +1,98 @@
+{
+ "EVI 2025": {
+  "auc": 0.7127168432204478,
+  "vorzeichen": 1,
+  "schwelle": 0.4686477982997895,
+  "baum_erkannt": 0.8843610951332553,
+  "nichtbaum_korrekt": 0.5367768498374155,
+  "bal_acc": 0.7105689724853355
+ },
+ "EVI Mittel 11 Jahre": {
+  "auc": 0.7175994604697388,
+  "vorzeichen": 1,
+  "schwelle": 0.43789787888526915,
+  "baum_erkannt": 0.8844867141374272,
+  "nichtbaum_korrekt": 0.48864715652560414,
+  "bal_acc": 0.6865669353315157
+ },
+ "EVI Minimum 11 Jahre": {
+  "auc": 0.8794441075971666,
+  "vorzeichen": 1,
+  "schwelle": 0.3866357684135437,
+  "baum_erkannt": 0.7969534085725053,
+  "nichtbaum_korrekt": 0.7995180948370646,
+  "bal_acc": 0.7982357517047849
+ },
+ "EVI 25%-Quantil": {
+  "auc": 0.8213603985327539,
+  "vorzeichen": 1,
+  "schwelle": 0.4467745161056519,
+  "baum_erkannt": 0.7972542330298643,
+  "nichtbaum_korrekt": 0.7033288885769762,
+  "bal_acc": 0.7502915608034202
+ },
+ "EVI Schwankung (Std) 11 Jahre": {
+  "auc": 0.7759104191480355,
+  "vorzeichen": -1,
+  "schwelle": 0.08224618434906004,
+  "baum_erkannt": 0.9373590918407151,
+  "nichtbaum_korrekt": 0.6359370248204552,
+  "bal_acc": 0.7866480583305852
+ },
+ "NDVI 2025": {
+  "auc": 0.8935563868125309,
+  "vorzeichen": 1,
+  "schwelle": 0.8092049956321716,
+  "baum_erkannt": 0.8679578977990228,
+  "nichtbaum_korrekt": 0.7792453271574613,
+  "bal_acc": 0.823601612478242
+ },
+ "NIR 2025": {
+  "auc": 0.5784468961089775,
+  "vorzeichen": 1,
+  "schwelle": 0.2755500078201294,
+  "baum_erkannt": 0.8390126346272091,
+  "nichtbaum_korrekt": 0.3759936369803729,
+  "bal_acc": 0.607503135803791
+ },
+ "Feuchteindex NDMI 2025": {
+  "auc": 0.8578295050331151,
+  "vorzeichen": 1,
+  "schwelle": 0.2647715950012207,
+  "baum_erkannt": 0.863346358040608,
+  "nichtbaum_korrekt": 0.7485671509111751,
+  "bal_acc": 0.8059567544758915
+ },
+ "Kombination (Test auf anderen Kacheln)": {
+  "auc": 0.980281555458508,
+  "baum_erkannt": 0.9327581576473748,
+  "nichtbaum_korrekt": 0.939688768484434,
+  "bal_acc": 0.9362234630659043,
+  "gewichte": {
+   "EVI 2025": -0.07916883612301459,
+   "EVI Mittel 11 Jahre": -0.7153856698898174,
+   "EVI Minimum 11 Jahre": 1.1712686905367282,
+   "EVI 25%-Quantil": 1.0790419630870913,
+   "EVI Schwankung (Std) 11 Jahre": -2.9207974747938086,
+   "NDVI 2025": 1.4753515115935347,
+   "NIR 2025": -1.3481704933930434,
+   "Feuchteindex NDMI 2025": 1.7222819540269259,
+   "const": 0.1501800867998836
+  }
+ },
+ "_hart": {
+  "EVI 2025": 0.5980829103600686,
+  "EVI Mittel 11 Jahre": 0.6105649588681668,
+  "EVI Minimum 11 Jahre": 0.8522083726534342,
+  "EVI 25%-Quantil": 0.7522267387403089,
+  "EVI Schwankung (Std) 11 Jahre": 0.9702044025821532,
+  "NDVI 2025": 0.844634725301886,
+  "NIR 2025": 0.563950861128049,
+  "Feuchteindex NDMI 2025": 0.8000004860462581,
+  "Kombination": {
+   "auc": 0.9909851896344092,
+   "baum_erkannt": 0.9584664965758023,
+   "feld_korrekt": 0.9721855005023531
+  }
+ }
+}
