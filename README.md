@@ -4,6 +4,8 @@ Zeitreihe der dichten Vegetation im Stadtgebiet Wuppertal aus Sentinel-2-Sommerm
 MapLibre-Style-JSON zum Einbinden per Drag & Drop in den Digital Twin Wuppertal.
 
 ## Methodik
+[Verständliche Erklärung in Bildern (für Laien, mit Prüfbeispielen)](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/erklaerung/)
+
 [Methodik als PDF (Workflow am Beispiel 2015 und 2016)](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/Methodik_Vegetation_Wuppertal_2015_2016.pdf)
 
 ## Einbinden
