@@ -67,6 +67,14 @@ Bild: `docs/baummaske/baummaske_test.png`. Gewichte der Kombination: `out/report
 - **Definition „Baum":** Höhe über 3 m laut nDOM, also auch Gebüsch und Masten. OSM-Gebäude sind nicht vollständig.
 - **nDOM-Aufnahmezeitpunkt:** Frühjahr (laubfrei); wir haben das Aufnahmedatum nicht je Kachel geprüft.
 
+## 6a. Umgesetzt: Baummaske je Zeitfenster und große Verlustflächen (`scripts/baummaske.py`, `scripts/verlust_gross_pruefen.py`, `scripts/publish_verlust_gross.py`)
+- **Modell:** Logistische Regression (EVI-Minimum, EVI-Schwankung, EVI-Mittel, NDVI-Mittel, NDMI-Mittel je Fünf-Jahres-Fenster), angelernt auf Fenster 2021–2025 gegen die nDOM-Baummaske 2025, danach unverändert auf Fenster 2015–2019 angewendet. Auf Testkacheln: 95 % der Baum- und 94 % der Nicht-Baum-Pixel richtig (Schwelle 0,69).
+- **Kalibrierung:** Die Schwelle für 2015–2019 wurde auf 0,577 gesenkt, damit dort derselbe Anteil der OSM-Waldpixel erkannt wird wie 2021–2025 (96,5 %). Ohne Kalibrierung lag die erkannte Baumfläche im früheren Fenster systematisch niedriger.
+- **Ergebnis:** Verlust rund 5,5 km², Zuwachs rund 10 km², Baumfläche rund 70 bzw. 75 km² von rund 168 km². Der Zuwachs ist nach Sichtprüfung größtenteils falsch (0 von 9 Flächen überzeugend), die kleinen Verluste ebenfalls häufig. **Diese Bilanz ist nicht verwendbar.**
+- **Sichtprüfung auf Luftbildern 2016/2023** (Geobasis NRW): 10 zufällige Verlustflächen: 4 eindeutig abgeräumter Nadelwald, 1 wahrscheinlich, 5 unklar; die drei größten (> 2 ha) eindeutig.
+- **Veröffentlicht:** Nur Verlustflächen ≥ 1 ha (73 Stück, 1,9 km²), jede einzeln auf den Luftbildern angesehen (`docs/baummaske/gross_1..3.png`): 58 sehen nach abgeräumtem Nadelwald aus, 15 sind unsicher (5 Feld/Wiese, 4 Steinbruch, 3 Seeufer, 3 Gewerbe/Bahn/Bebauung). Die Einordnung ist eine Sichtprüfung durch den Bearbeiter, nicht unabhängig bestätigt. Attribut `pruefung` im GeoJSON. Die Ursache der Verluste (Sturm, Käfer, Einschlag) ist unbekannt.
+- **Nicht veröffentlicht:** Baumkarten je Fenster, Zuwachs und kleine Verluste (siehe Grenzen).
+
 ## 6. Nächste Schritte
 1. Baummaske aus 2015–2019 (Schwankung, NDVI, NDMI), angelernt an der nDOM-Referenz, auf die Luftbilder 2016 und 2019 prüfen.
 2. Veränderung 2015 → 2025 nur innerhalb der Baummaske neu berechnen und wieder mit Luftbildern kontrollieren.

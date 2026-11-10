@@ -15,6 +15,11 @@ MapLibre-Style-JSON zum Einbinden per Drag & Drop in den Digital Twin Wuppertal.
 ## Einbinden
 Link auf das Portalfenster ziehen (https://digital-twin-wuppertal-live.github.io/geoportal/#/) oder die URL kopieren.
 
+**Baumverlust (große Flächen, Luftbild-geprüft)**
+
+- [Baumverlust über 1 ha (73 Flächen, Sichtprüfung: rot wahrscheinlich, orange unsicher)](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/baumverlust_ueber_1ha.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/baumverlust_ueber_1ha.style.json`
+
 **Zeitreihe mit Filter-Buttons (eine Datei, 11 Jahre)**
 
 - [Zeitreihe 2015–2025 mit Jahres-Buttons](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_zeitreihe.style.json) 
