@@ -75,6 +75,12 @@ Bild: `docs/baummaske/baummaske_test.png`. Gewichte der Kombination: `out/report
 - **Veröffentlicht:** Nur Verlustflächen ≥ 1 ha (73 Stück, 1,9 km²), jede einzeln auf den Luftbildern angesehen (`docs/baummaske/gross_1..3.png`): 58 sehen nach abgeräumtem Nadelwald aus, 15 sind unsicher (5 Feld/Wiese, 4 Steinbruch, 3 Seeufer, 3 Gewerbe/Bahn/Bebauung). Die Einordnung ist eine Sichtprüfung durch den Bearbeiter, nicht unabhängig bestätigt. Attribut `pruefung` im GeoJSON. Die Ursache der Verluste (Sturm, Käfer, Einschlag) ist unbekannt.
 - **Nicht veröffentlicht:** Baumkarten je Fenster, Zuwachs und kleine Verluste (siehe Grenzen).
 
+## 6b. Sichtprüfung im Prüf-Tool und Logbuch (`tools/pruef_tool/`, `scripts/build_pruef_daten.py`, `scripts/logbuch.py`)
+- **Ablauf:** Die 73 Flächen ≥ 1 ha (Abschnitt 6a) werden im Browser-Tool nacheinander mit Luftbild früher (2016) und heute (2025) nebeneinander gezeigt (Geobasis NRW, WMS `wms_nw_hist_dop` bzw. `wms_nw_dop`). Entscheidung Ja / Nein / Unsicher je Fläche, Export als `entscheidungen.json` (Kopie: `docs/logbuch/entscheidungen.json`).
+- **Ergebnis:** 51 Ja (144,5 ha), 13 Nein, 9 Unsicher. Nur „Ja“ kommt in den Layer `baumverlust_final` (GeoJSON-Felder `Nr`, `Fläche (ha)`, `Ursache`, `Notiz`). Prüfung auf doppelte Flächen: keine doppelte Nr, keine identische oder überlappende Geometrie; einzelne Polygone liegen 10 bis 20 m nebeneinander (Nr. 2 mit 37, 40 und 71), sind aber getrennte Flächen derselben Rodung.
+- **Logbuch:** `out/Logbuch_Baumverlust.pdf` (veröffentlicht unter `docs/logbuch/`) zeigt je bestätigter Fläche ein Foto früher und heute mit Umriss, Maßstab, Koordinaten und Quellenangabe.
+- **Grenzen:** Sichtprüfung einer Person, Bildjahre passen nicht exakt zu den Satellitenfenstern, Ursachen nicht erfasst, keine Aussage zu Flächen unter 1 ha oder zum Zuwachs.
+
 ## 6. Nächste Schritte
 1. Baummaske aus 2015–2019 (Schwankung, NDVI, NDMI), angelernt an der nDOM-Referenz, auf die Luftbilder 2016 und 2019 prüfen.
 2. Veränderung 2015 → 2025 nur innerhalb der Baummaske neu berechnen und wieder mit Luftbildern kontrollieren.

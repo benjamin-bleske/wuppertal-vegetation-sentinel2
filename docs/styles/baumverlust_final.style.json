@@ -1,0 +1,46 @@
+{
+ "version": 8,
+ "name": "baumverlust_final",
+ "metadata": {
+  "carmaConf": {
+   "layerInfo": {
+    "title": "Baumverlust bestaetigt (Sichtpruefung, Sentinel-2 2015-2019 zu 2021-2025)",
+    "description": "Baumverlust-Flaechen von mindestens 1 Hektar, auf denen Sentinel-2 zwischen den Sommern 2015-2019 und 2021-2025 einen Baumbestand verschwinden sieht und die vom Nutzer per Sichtpruefung an Luftbildern (Geobasis NRW, 2016 und 2025) bestaetigt wurden: 51 bestaetigte Flaechen, zusammen 144,5 ha (64 von 73 Erkennungen entschieden). Die Bestaetigung ist eine Sichtpruefung des Nutzers, keine amtliche Pruefung; die Luftbild-Jahre passen nicht genau zu den Sentinel-Zeitraeumen, die Luftbilder stammen aus 2016 und 2025 (Sommerbilder). Ursache der Verluste (Sturm, Kaefer, Einschlag) ist, soweit nicht je Flaeche angegeben, unbekannt. KEINE Gesamtbilanz des Baumbestands: kleinere Flaechen (unter 1 ha) und der Zuwachs sind nicht verlaesslich und hier nicht enthalten. Baum-Referenz: nDOM 2025 Geobasis NRW https://www.opengeodata.nrw.de/produkte/geobasis/hm/ndom50_tiff/ ; Luftbilder https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?REQUEST=GetCapabilities&SERVICE=WMS ; Methode und Grenzen: https://github.com/benjamin-bleske/wuppertal-vegetation-sentinel2/blob/main/METHODIK_Baummaske.md ; Schritt fuer Schritt erklaert: https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/baummaske/ . Quelle: Copernicus Sentinel-2 L2A (Median-Mosaik 25.07.-15.09., 10 m, Microsoft Planetary Computer); Stadtgrenze (c) OpenStreetMap contributors (ODbL). Originalquellen zum Nachpruefen: Sentinel-2 L2A https://planetarycomputer.microsoft.com/dataset/sentinel-2-l2a ; Mission https://sentinels.copernicus.eu/copernicus/sentinel-2 ; EVI nach Huete et al. 2002 https://doi.org/10.1016/S0034-4257(02)00096-2 ; Stadtgrenze https://www.openstreetmap.org/copyright ; Methode, Skripte und Grenzen: https://github.com/benjamin-bleske/wuppertal-vegetation-sentinel2#readme . ",
+    "keywords": [],
+    "tags": [
+     "Sentinel-2",
+     "Baeume",
+     "Verlust",
+     "Sichtpruefung"
+    ]
+   },
+   "instant": true
+  }
+ },
+ "sources": {
+  "bvf": {
+   "type": "geojson",
+   "data": "https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/geojson/baumverlust_final.geojson"
+  }
+ },
+ "layers": [
+  {
+   "id": "bvf-fill",
+   "type": "fill",
+   "source": "bvf",
+   "paint": {
+    "fill-color": "#D32F2F",
+    "fill-opacity": 0.55
+   }
+  },
+  {
+   "id": "bvf-line",
+   "type": "line",
+   "source": "bvf",
+   "paint": {
+    "line-color": "#7f0000",
+    "line-width": 1
+   }
+  }
+ ]
+}

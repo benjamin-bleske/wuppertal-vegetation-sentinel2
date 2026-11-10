@@ -1,0 +1,517 @@
+{
+ "erstellt": "2026-11-10T19:23:27.128Z",
+ "hinweis": "Entscheidung: ja = Baumverlust, nein, unsicher. Sichtprüfung des Nutzers an Luftbildern.",
+ "entscheidungen": [
+  {
+   "nr": 1,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:18:57.673Z"
+  },
+  {
+   "nr": 2,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:19:01.272Z"
+  },
+  {
+   "nr": 3,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:19:02.863Z"
+  },
+  {
+   "nr": 4,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:19:04.573Z"
+  },
+  {
+   "nr": 5,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:19:06.118Z"
+  },
+  {
+   "nr": 6,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:19:09.539Z"
+  },
+  {
+   "nr": 7,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:19:11.308Z"
+  },
+  {
+   "nr": 8,
+   "entscheidung": "nein",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:19:16.408Z"
+  },
+  {
+   "nr": 9,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:19:18.088Z"
+  },
+  {
+   "nr": 10,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:19:20.173Z"
+  },
+  {
+   "nr": 11,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:19:21.793Z"
+  },
+  {
+   "nr": 12,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:19:24.012Z"
+  },
+  {
+   "nr": 13,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:19:25.693Z"
+  },
+  {
+   "nr": 14,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:19:28.094Z"
+  },
+  {
+   "nr": 15,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:19:29.911Z"
+  },
+  {
+   "nr": 16,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:19:31.468Z"
+  },
+  {
+   "nr": 17,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:19:33.133Z"
+  },
+  {
+   "nr": 18,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:19:34.379Z"
+  },
+  {
+   "nr": 19,
+   "entscheidung": "nein",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:19:36.148Z"
+  },
+  {
+   "nr": 20,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:19:37.618Z"
+  },
+  {
+   "nr": 21,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:19:39.008Z"
+  },
+  {
+   "nr": 22,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:23:06.762Z"
+  },
+  {
+   "nr": 23,
+   "entscheidung": "unsicher",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:08.638Z"
+  },
+  {
+   "nr": 24,
+   "entscheidung": "unsicher",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:10.019Z"
+  },
+  {
+   "nr": 25,
+   "entscheidung": "unsicher",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:11.504Z"
+  },
+  {
+   "nr": 26,
+   "entscheidung": "unsicher",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:14.354Z"
+  },
+  {
+   "nr": 27,
+   "entscheidung": "unsicher",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:16.094Z"
+  },
+  {
+   "nr": 28,
+   "entscheidung": "unsicher",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:17.984Z"
+  },
+  {
+   "nr": 29,
+   "entscheidung": "unsicher",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:19.679Z"
+  },
+  {
+   "nr": 30,
+   "entscheidung": "unsicher",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:21.283Z"
+  },
+  {
+   "nr": 31,
+   "entscheidung": "unsicher",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:22.742Z"
+  },
+  {
+   "nr": 32,
+   "entscheidung": "nein",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:25.004Z"
+  },
+  {
+   "nr": 33,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:26.881Z"
+  },
+  {
+   "nr": 34,
+   "entscheidung": "nein",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:28.589Z"
+  },
+  {
+   "nr": 35,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:30.211Z"
+  },
+  {
+   "nr": 36,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:31.740Z"
+  },
+  {
+   "nr": 37,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:34.230Z"
+  },
+  {
+   "nr": 38,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:36.223Z"
+  },
+  {
+   "nr": 39,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:37.800Z"
+  },
+  {
+   "nr": 40,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:39.179Z"
+  },
+  {
+   "nr": 41,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:40.844Z"
+  },
+  {
+   "nr": 42,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:42.510Z"
+  },
+  {
+   "nr": 43,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:43.904Z"
+  },
+  {
+   "nr": 44,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:45.149Z"
+  },
+  {
+   "nr": 45,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:46.620Z"
+  },
+  {
+   "nr": 46,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:48.209Z"
+  },
+  {
+   "nr": 47,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:49.545Z"
+  },
+  {
+   "nr": 48,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:20:58.381Z"
+  },
+  {
+   "nr": 49,
+   "entscheidung": "nein",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:21:00.001Z"
+  },
+  {
+   "nr": 50,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:21:01.423Z"
+  },
+  {
+   "nr": 51,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:21:02.985Z"
+  },
+  {
+   "nr": 52,
+   "entscheidung": "nein",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:21:05.219Z"
+  },
+  {
+   "nr": 53,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:21:06.765Z"
+  },
+  {
+   "nr": 54,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:21:08.579Z"
+  },
+  {
+   "nr": 55,
+   "entscheidung": "nein",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:21:16.320Z"
+  },
+  {
+   "nr": 56,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:21:17.658Z"
+  },
+  {
+   "nr": 57,
+   "entscheidung": "nein",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:21:19.859Z"
+  },
+  {
+   "nr": 58,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:21:21.269Z"
+  },
+  {
+   "nr": 59,
+   "entscheidung": "nein",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:21:23.593Z"
+  },
+  {
+   "nr": 60,
+   "entscheidung": "nein",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:21:26.940Z"
+  },
+  {
+   "nr": 61,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:21:28.440Z"
+  },
+  {
+   "nr": 62,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:21:29.925Z"
+  },
+  {
+   "nr": 63,
+   "entscheidung": "nein",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:21:33.345Z"
+  },
+  {
+   "nr": 64,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:21:34.740Z"
+  },
+  {
+   "nr": 65,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:21:36.722Z"
+  },
+  {
+   "nr": 66,
+   "entscheidung": "nein",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:21:42.554Z"
+  },
+  {
+   "nr": 67,
+   "entscheidung": "nein",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:21:44.250Z"
+  },
+  {
+   "nr": 68,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:21:46.169Z"
+  },
+  {
+   "nr": 69,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:21:48.195Z"
+  },
+  {
+   "nr": 70,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:21:52.816Z"
+  },
+  {
+   "nr": 71,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:21:54.644Z"
+  },
+  {
+   "nr": 72,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:21:56.985Z"
+  },
+  {
+   "nr": 73,
+   "entscheidung": "ja",
+   "ursache": "",
+   "notiz": "",
+   "zeitstempel": "2026-11-10T19:22:51.855Z"
+  }
+ ]
+}
