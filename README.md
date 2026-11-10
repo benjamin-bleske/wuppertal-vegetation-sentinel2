@@ -86,21 +86,30 @@ Link auf das Portalfenster ziehen (https://digital-twin-wuppertal-live.github.io
 - Wolkenfreies Median-Mosaik (`scripts/composite.py`): Szenenklassifikation SCL 2, 4, 5, 6, 7 gültig, Maske 2 px aufgeweitet, mind. 2 klare Beobachtungen je Pixel. SCL-Klasse 2 („dunkel“) bleibt gültig, weil ältere Prozessierungs-Baselines urbane Flächen so einstufen.
 - Vegetation = **EVI > 0,45**, 3×3-Medianfilter, Flächen unter 400 m² entfernt (`scripts/vectorize.py`).
 - Veränderung = Vegetationsmaske Jahr 1 gegen Jahr 2, nur Pixel, die in beiden Jahren gültig beobachtet wurden.
+- **Baumverlust (neu):** Der EVI trennt Bäume nicht von Acker/Wiese (AUC 0,60 gegen Acker/Wiese). Deshalb wurde an der Höhenkarte nDOM 2025 (Geobasis NRW) angelernt, welche Satelliten-Eigenschaften Bäume trennen (EVI-Schwankung über die Jahre, NDVI, NDMI; Trefferquote auf Testkacheln 95 % / 94 %). Zwei Fenster 2015–2019 und 2021–2025, Schwelle je Fenster an OSM-Wald kalibriert (`scripts/baummaske.py`). Veröffentlicht sind nur Verlustflächen ≥ 1 ha (73 Stück), einzeln auf Luftbildern 2016/2023 angesehen. Ausführlich: [METHODIK_Baummaske.md](METHODIK_Baummaske.md), für Laien: [Erklärseite](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/baummaske/).
 
 ## Grenzen
 - 10 m Auflösung: dichte Vegetation insgesamt (Bäume **und** dichte Wiesen), keine Einzelbäume.
 - Jahresvergleiche hängen von Witterung und Sensor ab (z. B. Dürresommer 2020; 2015 nur Sentinel-2A). Ein Unterschied zwischen zwei Jahren ist kein Beleg für dauerhaften Baumverlust.
-- In den Änderungslayern sind große eckige Flächen meist **Ackerland** (Fruchtfolge, Erntezeitpunkt) und schmale Streifen Randeffekte. Für eine Aussage zum Baumbestand müsste die Analyse auf Waldflächen/Gehölze beschränkt werden (offener nächster Schritt).
+- In den Änderungslayern sind große eckige Flächen meist **Ackerland** (Fruchtfolge, Erntezeitpunkt) und schmale Streifen Randeffekte. Für Bäume gibt es deshalb die Baumverlust-Schicht (siehe Methode); die Vegetationsschichten und ihre Veränderungslayer sagen nichts über Bäume.
 - 2015 gibt es erst ab 30.07. Daten (Start der Mission).
+- Baumverlust: Die Baum-Referenz (nDOM) gibt es nur für 2025; die Zuwachsflächen sind nach Sichtprüfung größtenteils falsch (0 von 9 überzeugend), kleine Verluste häufig ebenfalls. **Es gibt keine Gesamtbilanz des Baumbestands.** Die Einordnung der 73 großen Flächen (58 wahrscheinlich Baumverlust, 15 unsicher) ist eine Sichtprüfung des Bearbeiters, nicht unabhängig bestätigt. Ursache der Verluste unbekannt.
 
 ## Reproduzieren
-`python -m venv .venv && .venv/bin/pip install rasterio pystac-client planetary-computer shapely geopandas pyogrio scikit-image scipy matplotlib requests mercantile pillow`, dann `scripts/get_boundary.py`, `scripts/composite.py JAHR`, `scripts/vectorize.py`, `scripts/build_styles.py`, `scripts/make_hillshade.py`, `scripts/publish_site.sh`.
+`python -m venv .venv && .venv/bin/pip install rasterio pystac-client planetary-computer shapely geopandas pyogrio scikit-image scipy matplotlib requests mercantile pillow`, dann `scripts/get_boundary.py`, `scripts/composite.py JAHR`, `scripts/vectorize.py`, `scripts/build_styles.py`, `scripts/make_hillshade.py`, `scripts/publish_site.sh`. Baumverlust: `scripts/schwelle_osm.py`, `scripts/ndom_select.py` (lädt 80 nDOM-Kacheln, 1,3 GB), `scripts/osm_buildings.py`, `scripts/baummaske_test.py`, `scripts/baummaske.py`, `scripts/verlust_gross_pruefen.py`, `scripts/publish_verlust_gross.py`. Achtung: `publish_site.sh` kopiert das ganze Verzeichnis `out/geojson` nach `docs/`; die unzuverlässigen Baumkarten dort nicht mitveröffentlichen.
 
 ## Quellen und Lizenzen
 - Copernicus Sentinel-2 (Daten bereitgestellt über Microsoft Planetary Computer), Copernicus-Datenlizenz.
 - Stadtgrenze: © OpenStreetMap contributors, ODbL 1.0.
 - Geländeschummerung: DGM1 © Geobasis NRW, dl-de/zero-2-0.
+- Höhenkarte nDOM 2025 (Baum-Referenz): © Geobasis NRW, dl-de/zero-2-0, <https://www.opengeodata.nrw.de/produkte/geobasis/hm/ndom50_tiff/>.
+- Historische Luftbilder (WMS NW Hist DOP): © Geobasis NRW, dl-de/zero-2-0, <https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?REQUEST=GetCapabilities&SERVICE=WMS>.
+- Gebäude und Waldflächen (nur Hilfsdaten für Referenz und Kalibrierung): © OpenStreetMap contributors, ODbL 1.0.
+- EVI: Huete et al. 2002, <https://doi.org/10.1016/S0034-4257(02)00096-2>.
 
 ## Ergebnis (Stand 2026-11-05)
 Anteil dichter Vegetation an der Stadtfläche (EVI > 0,45): 2015 53,5 % · 2016 50,4 · 2017 59,3 · 2018 44,6 · 2019 47,9 · 2020 44,9 · 2021 49,3 · 2022 47,6 · 2023 53,5 · 2024 61,1 · 2025 57,0.
 Die Reihe ist **nicht monoton**; sie schwankt mit Witterung (Tiefpunkte in den Dürrejahren 2018 und 2020). 2015→2025: 8,8 km² Verlust, 14,7 km² Zuwachs. Damit lässt sich ein Rückgang des Baumbestands mit diesen Daten **nicht belegen**.
+
+## Ergebnis Baumverlust (Stand 2026-11-10)
+Fenster 2015–2019 → 2021–2025, Verlustflächen ≥ 1 ha: 73 Flächen, 1,9 km². Nach Sichtprüfung auf Luftbildern 2016/2023 sehen 58 nach abgeräumtem Nadelwald aus, 15 sind unsicher (5 Feld/Wiese, 4 Steinbruch, 3 Seeufer, 3 Gewerbe/Bahn/Bebauung). Alle Flächen einzeln: [Blatt 1](docs/baummaske/gross_1.png), [2](docs/baummaske/gross_2.png), [3](docs/baummaske/gross_3.png). Das belegt große Waldabräumungen, aber **keinen Gesamtrückgang** des Baumbestands: kleinere Verluste und der Zuwachs sind nicht verlässlich bestimmt.
