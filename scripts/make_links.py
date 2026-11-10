@@ -17,7 +17,8 @@ groups = [("Zeitreihe mit Filter-Buttons (eine Datei, 11 Jahre)", [n for n in na
 
 PDF = "https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/Methodik_Vegetation_Wuppertal_2015_2016.pdf"
 ERK = "https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/erklaerung/"
-md = "## Methodik\n[Verständliche Erklärung in Bildern (für Laien, mit Prüfbeispielen)](" + ERK + ")\n\n[Test: Welche Satellitengröße trennt Bäume? (NDVI, Jahresschwankung, nDOM-Referenz)](METHODIK_Baummaske.md)\n\n[Methodik als PDF (Workflow am Beispiel 2015 und 2016)](" + PDF + ")\n\n## Einbinden\nLink auf das Portalfenster ziehen (https://digital-twin-wuppertal-live.github.io/geoportal/#/) oder die URL kopieren.\n\n"
+BAUM = "https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/baummaske/"
+md = "## Methodik\n[Verständliche Erklärung in Bildern (für Laien, mit Prüfbeispielen)](" + ERK + ")\n\n[Wie finden wir Bäume im Satellitenbild? Schritt für Schritt (für Laien)](" + BAUM + ")\n\n[Test: Welche Satellitengröße trennt Bäume? (NDVI, Jahresschwankung, nDOM-Referenz)](METHODIK_Baummaske.md)\n\n[Methodik als PDF (Workflow am Beispiel 2015 und 2016)](" + PDF + ")\n\n## Einbinden\nLink auf das Portalfenster ziehen (https://digital-twin-wuppertal-live.github.io/geoportal/#/) oder die URL kopieren.\n\n"
 for g, ns in groups:
     md += f"**{g}**\n\n" + "".join(f"- [{label(n)}]({BASE}{n}) \n  `{BASE}{n}`\n" for n in ns) + "\n"
 r = open("README.md").read()
@@ -27,10 +28,10 @@ open("README.md", "w").write(r)
 html = """<!doctype html><meta charset=utf-8><title>Vegetation Wuppertal – Sentinel-2</title>
 <style>body{font:16px system-ui;max-width:48em;margin:2em auto;padding:0 1em}li{margin:.5em 0}code{font-size:.8em;color:#555;word-break:break-all}</style>
 <h1>Vegetation Wuppertal 2015–2025</h1>
-<p>Link auf das <a href="https://digital-twin-wuppertal-live.github.io/geoportal/#/">Geoportal</a>-Fenster ziehen oder die URL kopieren. <b>Neu:</b> <a href="{ERK}">Verständliche Erklärung in Bildern</a> (was die Karten zeigen und was nicht). Methodik: <a href="{PDF}">PDF (Workflow 2015/2016)</a>. Methode und Grenzen: <a href="https://github.com/benjamin-bleske/wuppertal-vegetation-sentinel2#readme">README</a>.</p>
+<p>Link auf das <a href="https://digital-twin-wuppertal-live.github.io/geoportal/#/">Geoportal</a>-Fenster ziehen oder die URL kopieren. <b>Neu:</b> <a href="{ERK}">Verständliche Erklärung in Bildern</a> (was die Karten zeigen und was nicht) und <a href="{BAUM}">Wie finden wir Bäume im Satellitenbild?</a> (Schritt für Schritt). Methodik: <a href="{PDF}">PDF (Workflow 2015/2016)</a>. Methode und Grenzen: <a href="https://github.com/benjamin-bleske/wuppertal-vegetation-sentinel2#readme">README</a>.</p>
 """
 for g, ns in groups:
     html += f"<h2>{g}</h2><ul>" + "".join(f'<li><a href="{BASE}{n}">{label(n)}</a><br><code>{BASE}{n}</code></li>' for n in ns) + "</ul>"
-html = html.replace("{PDF}", PDF).replace("{ERK}", ERK)
+html = html.replace("{PDF}", PDF).replace("{ERK}", ERK).replace("{BAUM}", BAUM)
 open("docs/index.html", "w").write(html)
 print(md[:600])

@@ -1,0 +1,26 @@
+{
+ "schwelle": 0.6900000000000002,
+ "schwellen_je_fenster": {
+  "B": 0.6900000000000002,
+  "A": 0.5774132013320923
+ },
+ "osm_wald_erkannt": 0.9654852882993565,
+ "test": {
+  "schwelle": 0.6900000000000002,
+  "baum_erkannt": 0.9473377145922747,
+  "nichtbaum_korrekt": 0.936081333178617
+ },
+ "gewichte": {
+  "EVI Minimum": 0.7207104862642916,
+  "EVI Schwankung": -3.104595828060263,
+  "EVI Mittel": -2.4695425848267094,
+  "NDVI Mittel": 2.8514409049599987,
+  "NDMI Mittel": 1.8133063656043389,
+  "const": 0.010290142822206182
+ },
+ "baum_A_km2": 70.346,
+ "baum_B_km2": 75.1354,
+ "verlust_km2": 5.5142,
+ "zuwachs_km2": 10.3036,
+ "gueltig_km2": 168.2726
+}

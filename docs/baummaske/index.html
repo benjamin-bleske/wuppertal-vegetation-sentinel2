@@ -1,0 +1,68 @@
+<!doctype html><html lang="de"><meta charset="utf-8"><title>Wie finden wir Bäume im Satellitenbild? – Schritt für Schritt</title>
+<style>body{font:18px/1.55 system-ui;max-width:54em;margin:2em auto;padding:0 1em}img{max-width:100%;border:1px solid #ccc}h2{margin-top:2em}.box{background:#fff3cd;padding:.8em 1em;border-radius:8px}.ok{background:#e8f5e9;padding:.8em 1em;border-radius:8px}</style>
+<h1>Wie finden wir Bäume im Satellitenbild?</h1>
+<p class="box"><b>Kurz:</b> Unsere erste Karte zeigte nur „grün oder nicht grün" und konnte Bäume nicht von Wiesen und Äckern trennen. Jetzt haben wir einen besseren Weg gefunden: Als Maßstab dienen <b>Höhenmessungen</b> aus dem Flugzeug. Damit haben wir dem Computer beigebracht, woran man im Satellitenbild einen Baum erkennt. Das Ergebnis findet große echte Waldabräumungen, aber noch <b>keine verlässliche Gesamtbilanz</b>, ob es mehr oder weniger Bäume gibt. Warum, steht in Schritt 5.</p>
+
+<p class="ok"><b>Kleines Wörterbuch.</b> <b>Karte</b> (auch „Layer"): eine Ebene, die man im Geoportal über die Stadtkarte legt. <b>Verlust</b>: Hier war früher ein Baum und jetzt nicht mehr. <b>Zuwachs</b>: Hier war früher kein Baum und jetzt einer. <b>Referenz</b>: die Musterlösung, mit der wir den Computer anlernen und prüfen. <b>EVI</b> und <b>NDVI</b>: zwei Rechenwege, die aus dem Licht, das Pflanzen zurückwerfen, einen „Grün-Wert" machen (EVI ist unser erster Versuch, NDVI der einfachere Klassiker).</p>
+
+<h2>Schritt 0: Was war das Problem?</h2>
+<p>Unsere erste Karte sagte „viel Grün" für jedes 10-mal-10-Meter-Quadrat, das stark Pflanzen zurückwirft. Das trifft auf Bäume zu, aber auch auf Wiesen und Äcker, die im Sommer kräftig wachsen. Wir haben es nachgemessen: Wenn man die Grenze höher setzt, verliert man eher Wald als Felder (<a href="https://github.com/benjamin-bleske/wuppertal-vegetation-sentinel2/blob/main/METHODIK_Baummaske.md">Details und Zahlen</a>).</p>
+
+<h2>Schritt 1: Woran erkennt man „Baum" ganz sicher?</h2>
+<p>An der <b>Höhe</b>. Ein Baum ist höher als drei Meter, eine Wiese oder ein Acker nicht. Das Land NRW lässt das ganze Land aus dem Flugzeug fotografieren und berechnet aus den überlappenden Fotos eine Höhenkarte („nDOM": Höhe über dem Boden, ein Messwert alle 50 cm). Das ist unsere <b>Referenz</b> (Musterlösung): Wo viel über drei Meter hoch ist, steht ein Baum. Häuser sind auch hoch, deshalb haben wir sie anhand der OpenStreetMap-Gebäude herausgerechnet.</p>
+<p>So lernt der Computer: Wir zeigen ihm Tausende Beispielflächen, bei denen wir aus der Höhenkarte schon wissen, ob dort ein Baum steht, zusammen mit dem, was der Satellit dort misst. Er sucht sich die Regel, die am besten passt, und schätzt danach auch an Orten selbst, die er nicht kannte. Wir haben 80 zufällig gezogene Quadratkilometer von Wuppertal ausgewertet (etwa 1,3 GB Daten). Es gibt diese Höhenkarte nur für <b>2025</b>, nicht für frühere Jahre.</p>
+
+<h2>Schritt 2: Eine Stichprobe, Bild für Bild</h2>
+<img src="schritt2_probe.png" alt="Luftbild, Höhenkarte, Referenz, Satellit">
+<ul>
+<li><b>Bild 1:</b> Luftbild eines Quadratkilometers (Frühjahr, deshalb sind die Laubbäume noch kahl und braun).</li>
+<li><b>Bild 2:</b> Die Höhenkarte. Hell = hoch. Die langen hellen Streifen sind Hochhäuser, die hellen Flecken im Wald sind hohe Bäume.</li>
+<li><b>Bild 3:</b> Daraus machen wir unsere „Lösung": dunkelgrün = Baum, beige = kein Baum, rot = Gebäude. Weiße Stellen sind unklar (zum Beispiel Büsche) und werden nicht verwendet.</li>
+<li><b>Bild 4:</b> Was ein Computer dazu aus den Satellitenbildern <i>allein</i> ableitet, nachdem wir es ihm beigebracht haben. Er trifft den Wald unten rechts und die Bäume in der Stadt ziemlich gut.</li>
+</ul>
+
+<h2>Schritt 3: Woran erkennt der Satellit einen Baum?</h2>
+<p>Wir haben acht Eigenschaften der Satellitenbilder ausprobiert (das Bild zeigt die wichtigsten drei, alle acht stehen in der <a href="https://github.com/benjamin-bleske/wuppertal-vegetation-sentinel2/blob/main/METHODIK_Baummaske.md">Dokumentation</a>) und gemessen, wie gut jede einen Baum von einer Wiese oder einem Acker unterscheidet. <b>So liest du die Balken:</b> Man zeigt dem Computer immer einen Baum und eine Wiese und fragt, welcher der Baum ist. 0 % heißt: er rät nur, 100 % heißt: er liegt immer richtig. Es ist keine Trefferquote in Prozent der Flächen (die steht unten bei „Alle Eigenschaften zusammen").</p>
+<img src="schritt1_trennung.png" alt="Trennschärfe der Merkmale">
+<ul>
+<li>Unsere <b>erste Karte (EVI)</b> war fast wertlos: 20 %.</li>
+<li>Der <b>NDVI</b> (ein anderer, einfacherer Grün-Wert) ist deutlich besser: 69 %.</li>
+<li>Am besten ist die <b>Schwankung über die Jahre</b>: 94 %. Man misst für jeden Punkt, wie stark der Grün-Wert von Sommer zu Sommer hin- und herspringt. (Ein „Grün-Wert" ist einfach eine Zahl pro Punkt: hoch = viele gesunde Pflanzen.) Für diese Prüfung haben wir alle elf Sommer genommen, für die Karte in Schritt 4 dann fünf pro Fenster. Ein Wald sieht jeden Sommer ähnlich aus, ein Acker oder eine Wiese wechselt (Fruchtfolge, Mähen, Wetter).</li>
+</ul>
+<img src="schritt3_jahre.png" alt="Grün-Wert über die Jahre">
+<p><small>Das Bild zeigt nur die Mitte und das mittlere Band aller Punkte, deshalb sind die Unterschiede dort schwer zu sehen. Entscheidend ist der Rest: Die meisten Acker-Punkte springen stärker als die meisten Baum-Punkte, und genau das messen die 94 %. Die Auswertung rechnet für jeden einzelnen Punkt aus, wie stark er schwankt, und das trennt viel besser, als die Mittellinien erkennen lassen. Die gestrichelte Linie ist die Grenze „viel Grün" unserer ersten Karte.</small></p>
+<p>Alle Eigenschaften zusammen genommen und angelernt: 98 %. Anders gerechnet: Auf Testflächen erkennt der Computer rund <b>96 von 100 Baum-Flächen</b> als Baum und stuft rund <b>97 von 100 Acker- und Wiesenflächen</b> richtig als Nicht-Baum ein. <b>Wichtig:</b> Wir haben die Hälfte der Quadratkilometer zum Anlernen genommen und die andere Hälfte zum Prüfen. So wissen wir, dass es auch an Orten funktioniert, die der Computer nicht kannte. Benachbarte Orte sind sich aber ähnlich, die echte Quote kann etwas niedriger liegen.</p>
+
+<h2>Schritt 4: Zwei Zeitfenster vergleichen</h2>
+<p>Für die Veränderung brauchen wir eine Baumkarte aus <b>früher</b> und eine aus <b>später</b>, die wir vergleichen. Wir nehmen zwei Fenster: <b>2015 bis 2019</b> und <b>2021 bis 2025</b>. Jedes Fenster fasst fünf Sommer zusammen, so fallen einzelne Ausreißer-Jahre weniger ins Gewicht. Das Jahr 2020 lassen wir weg, damit sich die Fenster nicht berühren.</p>
+<p>Der Computer lernt an den Satellitenbildern 2021–2025 (zeitgleich zur Höhenkarte 2025) und wendet dieselbe Regel danach auf 2015–2019 an. Eine Fläche zählt als <b>Verlust</b>, wenn sie früher Baum war und später nicht mehr.</p>
+<p><b>Warum nicht alle elf Jahre auf einmal?</b> Ein Baum, der 2020 gefällt wird, springt in den Jahren davor und danach stark hin und her und würde dann wie ein Acker aussehen. Er fiele aus der Baumkarte, bevor wir seinen Verlust sehen können. Deshalb getrennte Fenster.</p>
+
+<h2>Schritt 5: Das Ergebnis, und warum wir noch nichts behaupten</h2>
+<p>Wir haben zufällig ausgewählte „Verlust"- und „Zuwachs"-Flächen auf echten Luftbildern angesehen. <b>So liest du das Bild:</b> Jede Zeile ist eine Fläche, die der Computer meldet (V1 bis V4 = Verlust, Z1 bis Z4 = Zuwachs; die Zahl ist die Größe). Die zwei linken Spalten sind Satellitenfotos von 2015 und 2025 (grob und unscharf). Die zwei rechten Spalten sind echte Luftbilder von 2016 und 2023 (die Jahre passen nicht genau, weil es nicht jedes Jahr Luftbilder gibt). Der Umriss zeigt die Fläche. Schau vor allem auf die rechten Bilder: Steht bei „Verlust" 2016 ein Wald und 2023 nicht mehr? Steht bei „Zuwachs" 2016 nichts und 2023 ein Wald?</p>
+<img src="pruefblatt_baum.png" alt="Prüfblatt mit acht zufälligen Flächen">
+<ul>
+<li><b>V1 (24.404 m²):</b> Eindeutig. 2016 dichter dunkler Nadelwald, 2023 eine kahle Fläche.</li>
+<li><b>V2, V3, V4:</b> Nicht überzeugend. Bei V2 (Friedhof/Gärten) und V4 (Waldrand neben einem Feld) sehe ich auf den Luftbildern keinen Baumverlust, bei V3 ist eine Fläche zwischen Häusern teilweise überbaut.</li>
+<li><b>Z1 bis Z4:</b> Keine einzige ist ein neu gewachsener Wald. Z1 ist schon 2016 Nadelwald (das Satellitenfoto 2015 hat dort Bildstörungen). Z2 ist ein Golfplatz, Z3 ein Grünstreifen an der Autobahn, Z4 ein Feldrand.</li>
+</ul>
+<p>Dieselbe Prüfung haben wir in zwei früheren Zufallsstichproben gemacht (<a href="fruehere_stichprobe_1.png">Stichprobe 1</a>, <a href="fruehere_stichprobe_2.png">Stichprobe 2</a>; eine Zuwachsfläche kommt in beiden vor, weil die Auswahl zufällig ist). <b>Zusammen waren das 10 verschiedene Verlustflächen: 4 eindeutig abgeräumter Nadelwald, 1 wahrscheinlich, 5 unklar.</b> Auffällig: Die drei größten (über 2 Hektar, etwa drei Fußballfelder) waren alle eindeutig; von den sieben kleineren war nur eine eindeutig (6.698 m²) und eine wahrscheinlich. Das ist eine kleine Stichprobe, aber ein Hinweis, dass man nur große Flächen ernst nehmen sollte. Warum die Bäume weg sind (Sturm, Käfer, Holzeinschlag), wissen wir nicht.</p>
+<p class="box"><b>Zuwachs:</b> Von den insgesamt 9 verschiedenen angesehenen Zuwachsflächen war <b>keine</b> überzeugend neuer Wald. Meist sind es Ränder von Wald, Gärten oder Grünstreifen, die der Computer fälschlich meldet. Ein möglicher Grund: 2015 liegen vermutlich weniger brauchbare Satellitenbilder vor als in den späteren Jahren, und 2018 war ein trockener Sommer (beides haben wir nicht eigens gemessen).</p>
+<p><b>Die Zahlen,</b> die der Computer ausgibt, für die ganze Stadt (rund 168 km² ausgewertet): Verlust rund 5,5 km², Zuwachs rund 10 km², Baumfläche etwa 70 km² im früheren und 75 km² im späteren Fenster. Weil der „Zuwachs" größtenteils nicht stimmt und auch viele kleine „Verluste" nicht, darf man <b>diese Bilanz nicht als Aussage zum Baumbestand verwenden</b>, weder für einen Rückgang noch dagegen.</p>
+
+<h2>Was heißt das?</h2>
+<ul>
+<li>Wir können mit dieser Methode <b>große echte Baumverluste</b> (abgeräumte Waldflächen) im Satellitenbild finden. Das ist ein Fortschritt gegenüber der ersten Karte, die dort nur Äcker markiert hat.</li>
+<li>Für die Frage „Gibt es insgesamt weniger Bäume?" reicht es noch nicht, weil der Zuwachs nicht stimmt.</li>
+<li>Der sinnvolle nächste Schritt: nur die <b>großen Verlustflächen</b> (zum Beispiel über 1 Hektar) auflisten und jede mit dem Luftbild vorher/nachher prüfen, statt eine Gesamtbilanz zu behaupten.</li>
+</ul>
+
+<h2>Grenzen, kurz</h2>
+<ul>
+<li>Die Höhenkarte (Referenz) gibt es nur für 2025. Für die frühere Karte nehmen wir an, dass dieselbe Regel gilt. Das haben wir nur an den Luftbildern stichprobenhaft geprüft, nicht gemessen.</li>
+<li>Die Stichprobe (10 Verlust- und 9 Zuwachsflächen) reicht nicht für eine Genauigkeitsangabe.</li>
+<li>Einzelne Bäume, Hecken und kleine Gehölze sieht man bei 10 m nicht.</li>
+<li>Diese Baumkarten sind noch nicht im Geoportal veröffentlicht.</li>
+</ul>
+<p>Alle Rechenschritte stehen im Repo (<code>scripts/baummaske.py</code>, <code>scripts/baummaske_test.py</code>, <code>scripts/ndom_select.py</code>) und in der <a href="https://github.com/benjamin-bleske/wuppertal-vegetation-sentinel2/blob/main/METHODIK_Baummaske.md">Dokumentation</a>.</p>
+</html>

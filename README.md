@@ -6,6 +6,8 @@ MapLibre-Style-JSON zum Einbinden per Drag & Drop in den Digital Twin Wuppertal.
 ## Methodik
 [Verständliche Erklärung in Bildern (für Laien, mit Prüfbeispielen)](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/erklaerung/)
 
+[Wie finden wir Bäume im Satellitenbild? Schritt für Schritt (für Laien)](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/baummaske/)
+
 [Test: Welche Satellitengröße trennt Bäume? (NDVI, Jahresschwankung, nDOM-Referenz)](METHODIK_Baummaske.md)
 
 [Methodik als PDF (Workflow am Beispiel 2015 und 2016)](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/Methodik_Vegetation_Wuppertal_2015_2016.pdf)
