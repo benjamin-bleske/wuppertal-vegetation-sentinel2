@@ -3,15 +3,15 @@ import os, re
 BASE = "https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/"
 names = sorted(f for f in os.listdir("docs/styles") if f.endswith(".json"))
 def label(n):
-    if n.startswith("baumverlust_final"): return "Baumverlust bestätigt (51 Flächen, 144,5 ha, von Hand an Luftbildern 2016/2025 geprüft; Infobox mit Fläche in ha)"
-    if n.startswith("baumverlust"): return "Baumverlust über 1 ha (73 Flächen, Sichtprüfung: rot wahrscheinlich, orange unsicher)"
+    if n.startswith("baumverlust_final"): return "EMPFOHLEN: Baumverlust bestätigt (51 Flächen, 144,5 ha; genau die Flächen aus dem Logbuch-PDF)"
+    if n.startswith("baumverlust"): return "Vorstufe: alle 73 Erkennungen vor der Prüfung (nur zum Vergleich; rot wahrscheinlich, orange unsicher)"
     if n.startswith("luftbild_"): return "Luftbild " + n.split("_")[1].split(".")[0] + " (Geobasis NRW)"
     if n.startswith("vegetation_zeitreihe_or"): return "Zeitreihe 2015–2025, Test: Mehrfachauswahl (OR)"
     if n.startswith("vegetation_zeitreihe"): return "Zeitreihe 2015–2025 mit Jahres-Buttons"
     if n.startswith("vegetation_"): return "Vegetation " + n.split("_")[1].split(".")[0]
     if n.startswith("aenderung_"): a, b = n.split("_")[1], n.split("_")[2].split(".")[0]; return f"Veränderung {a} → {b} (Verlust rot, Zuwachs blau)"
     return "Geländeschummerung (DGM1)"
-groups = [("Baumverlust (große Flächen, Luftbild-geprüft)", [n for n in names if n.startswith("baumverlust")]),
+groups = [("Baumverlust (große Flächen ab 1 ha)", [n for n in names if n.startswith("baumverlust")]),
           ("Zeitreihe mit Filter-Buttons (eine Datei, 11 Jahre)", [n for n in names if n.startswith("vegetation_zeitreihe")]),
           ("Vegetation je Jahr", [n for n in names if n.startswith("vegetation_2")]),
           ("Veränderung", [n for n in names if n.startswith("aenderung_")]),
@@ -22,7 +22,7 @@ PDF = "https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/Methodik
 ERK = "https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/erklaerung/"
 LOG = "https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/logbuch/Logbuch_Baumverlust.pdf"
 BAUM = "https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/baummaske/"
-md = "## Methodik\n[Verständliche Erklärung in Bildern (für Laien, mit Prüfbeispielen)](" + ERK + ")\n\n[Wie finden wir Bäume im Satellitenbild? Schritt für Schritt (für Laien)](" + BAUM + ")\n\n[Test: Welche Satellitengröße trennt Bäume? (NDVI, Jahresschwankung, nDOM-Referenz)](METHODIK_Baummaske.md)\n\n[Logbuch Baumverlust als PDF (51 bestätigte Flächen, Foto von 2016 und von 2025 nebeneinander, 27 MB)](" + LOG + ")\n\n[Methodik als PDF (Workflow am Beispiel 2015 und 2016)](" + PDF + ")\n\n## Einbinden\nLink auf das Portalfenster ziehen (https://digital-twin-wuppertal-live.github.io/geoportal/#/) oder die URL kopieren.\n\n"
+md = "## Methodik\n[Verständliche Erklärung in Bildern (für Laien, mit Prüfbeispielen)](" + ERK + ")\n\n[Wie finden wir Bäume im Satellitenbild? Schritt für Schritt (für Laien)](" + BAUM + ")\n\n[Test: Welche Satellitengröße trennt Bäume? (NDVI, Jahresschwankung, nDOM-Referenz)](METHODIK_Baummaske.md)\n\n[Logbuch Baumverlust als PDF (51 bestätigte Flächen, Foto von 2016 und von 2025 nebeneinander, 14 MB)](" + LOG + ")\n\n[Methodik als PDF (Workflow am Beispiel 2015 und 2016)](" + PDF + ")\n\n## Einbinden\nLink auf das Portalfenster ziehen (https://digital-twin-wuppertal-live.github.io/geoportal/#/) oder die URL kopieren.\n\n"
 for g, ns in groups:
     md += f"**{g}**\n\n" + "".join(f"- [{label(n)}]({BASE}{n}) \n  `{BASE}{n}`\n" for n in ns) + "\n"
 r = open("README.md").read()

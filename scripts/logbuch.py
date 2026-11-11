@@ -77,7 +77,8 @@ def schoene_laenge(m):
 
 def als_jpeg(im):
     """Bild als JPEG puffern, damit das PDF klein bleibt."""
-    buf = io.BytesIO(); im.convert("RGB").save(buf, "JPEG", quality=70); buf.seek(0)
+    im = im.convert("RGB"); im = im.resize((720, 720), Image.LANCZOS) if im.width > 720 else im
+    buf = io.BytesIO(); im.save(buf, "JPEG", quality=65); buf.seek(0)
     return buf
 
 
