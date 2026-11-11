@@ -1,0 +1,77 @@
+{
+ "version": 8,
+ "name": "baumverlust_nordpark_vergleich",
+ "metadata": {
+  "carmaConf": {
+   "layerInfo": {
+    "title": "Vergleich: 144,5 ha Baumverlust = 3,9 Nordparks",
+    "description": "Größenvergleich: Die 51 per Sichtprüfung bestätigten Baumverlust-Flächen (je mindestens 1 Hektar) sind zusammen 144,5 ha groß. Der Nordpark in Wuppertal hat 37,3 ha, die Verlustfläche entspricht also 3,9 Nordparks. Rot: die Form des Nordparks, um den Schwerpunkt auf 144,5 ha vergrößert; grün: der tatsächliche Nordpark. Die rote Fläche zeigt NUR die Größe und ist kein Ort eines Verlusts; die echten Verlustflächen stehen im Layer 'Baumverlust bestätigt'. Es sind nur Flächen ab 1 ha nach Sichtprüfung; keine Gesamtbilanz des Baumbestands. Quellen: Nordpark OpenStreetMap, Weg 26435842, https://www.openstreetmap.org/way/26435842 (c) OpenStreetMap contributors, ODbL, https://www.openstreetmap.org/copyright ; Verlustflächen: Copernicus Sentinel-2 L2A https://planetarycomputer.microsoft.com/dataset/sentinel-2-l2a, Luftbilder Geobasis NRW https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?REQUEST=GetCapabilities&SERVICE=WMS ; Methode: https://github.com/benjamin-bleske/wuppertal-vegetation-sentinel2/blob/main/METHODIK_Baummaske.md .",
+    "keywords": [
+     "carmaconf://infoBoxMapping:header: \"Größenvergleich Baumverlust\"",
+     "carmaconf://infoBoxMapping:title: p[\"Name\"]",
+     "carmaconf://infoBoxMapping:subtitle: \"Fläche: \" + String(p[\"Fläche (ha)\"]).replace(\".\", \",\") + \" Hektar\"",
+     "carmaconf://infoBoxMapping:additionalInfo: p[\"Vergleich\"]"
+    ],
+    "tags": [
+     "Vergleich",
+     "Baeume",
+     "Nordpark"
+    ]
+   },
+   "instant": true
+  }
+ },
+ "sources": {
+  "nv": {
+   "type": "geojson",
+   "data": "https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/geojson/baumverlust_nordpark_vergleich.geojson"
+  }
+ },
+ "layers": [
+  {
+   "id": "nv-fill",
+   "type": "fill",
+   "source": "nv",
+   "paint": {
+    "fill-color": [
+     "match",
+     [
+      "get",
+      "Vergleich"
+     ],
+     "Referenz",
+     "#2E7D32",
+     "#D32F2F"
+    ],
+    "fill-opacity": [
+     "match",
+     [
+      "get",
+      "Vergleich"
+     ],
+     "Referenz",
+     0.75,
+     0.35
+    ]
+   }
+  },
+  {
+   "id": "nv-line",
+   "type": "line",
+   "source": "nv",
+   "paint": {
+    "line-color": [
+     "match",
+     [
+      "get",
+      "Vergleich"
+     ],
+     "Referenz",
+     "#1B5E20",
+     "#7f0000"
+    ],
+    "line-width": 2
+   }
+  }
+ ]
+}

@@ -3,6 +3,7 @@ import os, re
 BASE = "https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/"
 names = sorted(f for f in os.listdir("docs/styles") if f.endswith(".json"))
 def label(n):
+    if n.startswith("baumverlust_nordpark"): return "Größenvergleich: 144,5 ha Baumverlust = 3,9 Nordparks (rot: Form des Nordparks vergrößert, grün: echter Nordpark)"
     if n.startswith("baumverlust_final"): return "EMPFOHLEN: Baumverlust bestätigt (51 Flächen, 144,5 ha; genau die Flächen aus dem Logbuch-PDF)"
     if n.startswith("baumverlust"): return "Vorstufe: alle 73 Erkennungen vor der Prüfung (nur zum Vergleich; rot wahrscheinlich, orange unsicher)"
     if n.startswith("luftbild_"): return "Luftbild " + n.split("_")[1].split(".")[0] + " (Geobasis NRW)"
