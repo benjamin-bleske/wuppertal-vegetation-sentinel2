@@ -146,12 +146,12 @@ def main():
                 {"bvf": {"type": "geojson", "data": f"{BASE}/geojson/baumverlust_final.geojson"}},
                 [{"id": "bvf-fill", "type": "fill", "source": "bvf", "paint": {"fill-color": "#D32F2F", "fill-opacity": 0.55}},
                  {"id": "bvf-line", "type": "line", "source": "bvf", "paint": {"line-color": "#7f0000", "line-width": 1}}])
-    # Infobox im Portal: Zeilen "carmaConf://infoBoxMapping:feld: Ausdruck" (p = Properties des Objekts)
+    # Infobox im Portal: Zeilen "carmaconf://infoBoxMapping:feld: Ausdruck" (p = Properties des Objekts)
     sty["metadata"]["carmaConf"]["layerInfo"]["keywords"] = [
-        'carmaConf://infoBoxMapping:header: "Baumverlust bestätigt, Nr. " + p["Nr"]',
-        'carmaConf://infoBoxMapping:title: "Fläche: " + String(p["Fläche (ha)"]).replace(".", ",") + " Hektar"',
-        'carmaConf://infoBoxMapping:subtitle: "Ursache: " + p["Ursache"]',
-        'carmaConf://infoBoxMapping:additionalInfo: "Sichtprüfung an Luftbildern 2016 und 2025 (Geobasis NRW)" + (p["Notiz"] ? ". Notiz: " + p["Notiz"] : "")']
+        'carmaconf://infoBoxMapping:header: "Baumverlust bestätigt, Nr. " + p["Nr"]',
+        'carmaconf://infoBoxMapping:title: "Fläche: " + String(p["Fläche (ha)"]).replace(".", ",") + " Hektar"',
+        'carmaconf://infoBoxMapping:subtitle: "Ursache: " + p["Ursache"]',
+        'carmaconf://infoBoxMapping:additionalInfo: "Sichtprüfung an Luftbildern 2016 und 2025 (Geobasis NRW)" + (p["Notiz"] ? ". Notiz: " + p["Notiz"] : "")']
     json.dump(sty, open("out/styles/baumverlust_final.style.json", "w"), ensure_ascii=False, indent=1)
 
     # ---- 2. PDF
