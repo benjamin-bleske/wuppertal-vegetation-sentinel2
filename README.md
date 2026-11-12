@@ -26,6 +26,11 @@ Link auf das Portalfenster ziehen (https://digital-twin-wuppertal-live.github.io
 - [Vorstufe: alle 73 Erkennungen vor der Prüfung (nur zum Vergleich; rot wahrscheinlich, orange unsicher)](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/baumverlust_ueber_1ha.style.json) 
   `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/baumverlust_ueber_1ha.style.json`
 
+**Test Punktgeometrie**
+
+- [testPunktGeometrie: 8 Testpunkte als dunkelrote Kreise](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/test_punkte.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/test_punkte.style.json`
+
 **Zeitreihe mit Filter-Buttons (eine Datei, 11 Jahre)**
 
 - [Zeitreihe 2015–2025 mit Jahres-Buttons](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_zeitreihe.style.json) 
@@ -128,4 +133,4 @@ Das [Logbuch als PDF](https://benjamin-bleske.github.io/wuppertal-vegetation-sen
 **Grenzen:** Es ist eine Sichtprüfung des Bearbeiters, keine amtliche Prüfung. Die Luftbildjahre passen nicht genau zu den Sentinel-Fenstern (2015–2019 / 2021–2025). Die Ursache der Verluste (Sturm, Käfer, Einschlag) ist nicht erfasst. Flächen unter 1 ha und der Zuwachs fehlen, es gibt keine Gesamtbilanz des Baumbestands. Das Luftbild von 2025 ist ein Sommerbild (Bildflug meist Juni 2025), das von 2016 meist Sommer 2016; die Aufnahmedaten stehen je Fläche im Tool.
 
 ## testPunktGeometrie
-Reiner Testlayer für Punktgeometrie, ohne fachliche Aussage: 8 frei gesetzte Punkte (Näherungswerte) in Wuppertal-Barmen, dargestellt als dunkelrote Kreise (Radius 6, Rand `#7f0000`). Style: [`test_punkte`](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/test_punkte.style.json), GeoJSON: [`geojson/test_punkte.geojson`](docs/geojson/test_punkte.geojson), Infobox-Felder `Name`, `Nr`.
+Reiner Testlayer für Punktgeometrie, ohne fachliche Aussage: 8 frei gesetzte Punkte (Näherungswerte) in Wuppertal-Barmen, dargestellt als dunkelrote Kreise (Radius 6, Rand `#7f0000`). Style-URL: `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/test_punkte.style.json`. GeoJSON: [`geojson/test_punkte.geojson`](docs/geojson/test_punkte.geojson), Infobox-Felder `Name`, `Nr`.
