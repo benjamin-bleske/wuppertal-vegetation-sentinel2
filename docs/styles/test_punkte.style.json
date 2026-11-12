@@ -1,0 +1,40 @@
+{
+ "version": 8,
+ "name": "test_punkte",
+ "metadata": {
+  "carmaConf": {
+   "layerInfo": {
+    "title": "Testpunkte (Punktgeometrie)",
+    "description": "Reiner Testlayer fuer Punktgeometrie: 8 frei gesetzte Punkte in Wuppertal-Barmen (Naeherungswerte, keine echten Daten). Dient nur dazu, die Darstellung (dunkelroter Kreis mit hellem Rand) im carma-Portal zu pruefen.",
+    "keywords": [
+     "carmaconf://infoBoxMapping:header: p[\"Name\"]",
+     "carmaconf://infoBoxMapping:title: \"Nr. \" + p[\"Nr\"]",
+     "carmaconf://infoBoxMapping:subtitle: \"Testdaten\"",
+     "carmaconf://infoBoxMapping:additionalInfo: \"Nur zum Testen der Punktdarstellung\""
+    ],
+    "tags": ["Test", "Punkte"]
+   },
+   "instant": true
+  }
+ },
+ "sources": {
+  "tp": {
+   "type": "geojson",
+   "data": "https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/geojson/test_punkte.geojson"
+  }
+ },
+ "layers": [
+  {
+   "id": "tp-circle",
+   "type": "circle",
+   "source": "tp",
+   "paint": {
+    "circle-radius": 6,
+    "circle-color": "#C62828",
+    "circle-opacity": 0.9,
+    "circle-stroke-color": "#7f0000",
+    "circle-stroke-width": 1.5
+   }
+  }
+ ]
+}

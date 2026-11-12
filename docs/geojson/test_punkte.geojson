@@ -1,0 +1,10 @@
+{"type":"FeatureCollection","name":"test_punkte","features":[
+{"type":"Feature","properties":{"Nr":1,"Name":"Testpunkt 1"},"geometry":{"type":"Point","coordinates":[7.1935,51.2722]}},
+{"type":"Feature","properties":{"Nr":2,"Name":"Testpunkt 2"},"geometry":{"type":"Point","coordinates":[7.1938,51.2721]}},
+{"type":"Feature","properties":{"Nr":3,"Name":"Testpunkt 3"},"geometry":{"type":"Point","coordinates":[7.1950,51.2715]}},
+{"type":"Feature","properties":{"Nr":4,"Name":"Testpunkt 4"},"geometry":{"type":"Point","coordinates":[7.1972,51.2729]}},
+{"type":"Feature","properties":{"Nr":5,"Name":"Testpunkt 5"},"geometry":{"type":"Point","coordinates":[7.2002,51.2722]}},
+{"type":"Feature","properties":{"Nr":6,"Name":"Testpunkt 6"},"geometry":{"type":"Point","coordinates":[7.2064,51.2748]}},
+{"type":"Feature","properties":{"Nr":7,"Name":"Testpunkt 7"},"geometry":{"type":"Point","coordinates":[7.2044,51.2760]}},
+{"type":"Feature","properties":{"Nr":8,"Name":"Testpunkt 8"},"geometry":{"type":"Point","coordinates":[7.2090,51.2765]}}
+]}
