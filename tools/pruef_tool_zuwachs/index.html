@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prüf-Tool Baumzuwachs Wuppertal</title>
+<style>
+  :root { --ja:#0b5cad; --nein:#8a4b00; --uns:#5b3a9a; --rahmen:#c9c9c9; --grund:#f6f7f4; }
+  * { box-sizing:border-box; }
+  body { font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif; margin:0; background:var(--grund); color:#1b1b1b; font-size:17px; line-height:1.4; }
+  header { background:#1f3b2d; color:#fff; padding:10px 18px; }
+  header h1 { margin:0; font-size:22px; }
+  details.hilfe { background:#fff; border-bottom:1px solid var(--rahmen); padding:8px 18px; }
+  details.hilfe summary { cursor:pointer; font-weight:600; font-size:18px; }
+  details.hilfe p, details.hilfe ul { margin:6px 0; max-width:1100px; }
+  main { padding:10px 18px 40px; max-width:1500px; margin:0 auto; }
+  .leiste { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:8px 0; }
+  button, select, input[type=number] { font:inherit; padding:8px 14px; border:2px solid #555; border-radius:8px; background:#fff; cursor:pointer; }
+  button:hover { background:#eee; }
+  button:focus-visible, select:focus-visible, textarea:focus-visible, input:focus-visible { outline:3px solid #ffb300; outline-offset:2px; }
+  input[type=number] { width:5.5em; cursor:text; }
+  .fortschritt { flex:1 1 280px; min-width:260px; }
+  .balken { height:14px; background:#ddd; border-radius:7px; overflow:hidden; border:1px solid #aaa; }
+  .balken > div { height:100%; background:#1f3b2d; width:0; transition:width .2s; }
+  .bilder { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media (max-width:900px){ .bilder{ grid-template-columns:1fr; } }
+  .bildkasten { background:#fff; border:2px solid var(--rahmen); border-radius:10px; padding:8px; }
+  .bildkopf { display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap; }
+  .bildkopf strong { font-size:20px; }
+  .rahmen { position:relative; width:100%; aspect-ratio:1/1; background:#d9d9d9; overflow:hidden; border-radius:4px; }
+  .rahmen img, .rahmen svg { position:absolute; inset:0; width:100%; height:100%; }
+  .rahmen .meld { position:absolute; left:8px; top:8px; background:rgba(255,255,255,.9); padding:3px 8px; border-radius:4px; font-size:14px; z-index:2; }
+  .bildnote { font-size:14px; color:#444; margin-top:4px; }
+  .info { display:grid; grid-template-columns:1.2fr 1fr; gap:12px; margin:12px 0; }
+  @media (max-width:900px){ .info{ grid-template-columns:1fr; } }
+  .karte { background:#fff; border:2px solid var(--rahmen); border-radius:10px; padding:10px 14px; }
+  .karte h2 { margin:0 0 6px; font-size:20px; }
+  .vorschlag { background:#fff8e1; border:2px dashed #b58900; border-radius:8px; padding:6px 10px; margin:8px 0; }
+  .vorschlag b { text-transform:none; }
+  .status { display:inline-block; padding:3px 12px; border-radius:16px; font-weight:700; border:2px solid; }
+  .st-ja { color:var(--ja); border-color:var(--ja); background:#e6f0fb; }
+  .st-nein { color:var(--nein); border-color:var(--nein); background:#fbeedd; }
+  .st-unsicher { color:var(--uns); border-color:var(--uns); background:#efe8fa; }
+  .st-offen { color:#444; border-color:#888; background:#eee; }
+  .entscheid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:8px 0; }
+  .entscheid button { font-size:20px; font-weight:700; padding:16px 8px; border-width:3px; }
+  .entscheid button small { display:block; font-weight:400; font-size:14px; }
+  .b-ja { color:var(--ja); border-color:var(--ja); } .b-ja.aktiv { background:var(--ja); color:#fff; }
+  .b-nein { color:var(--nein); border-color:var(--nein); } .b-nein.aktiv { background:var(--nein); color:#fff; }
+  .b-unsicher { color:var(--uns); border-color:var(--uns); } .b-unsicher.aktiv { background:var(--uns); color:#fff; }
+  label { font-weight:600; display:block; margin-top:6px; }
+  textarea { width:100%; min-height:70px; font:inherit; padding:8px; border:2px solid #555; border-radius:8px; }
+  .zeile { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+  .klein { font-size:14px; color:#444; }
+  .export button { background:#f0f4f0; }
+  kbd { background:#eee; border:1px solid #999; border-bottom-width:2px; border-radius:4px; padding:0 6px; font-family:inherit; font-size:14px; }
+  a { color:#0b5cad; }
+  .gesaved { color:#1b6b2f; font-size:14px; }
+</style>
+</head>
+<body>
+<header><h1>Prüf-Tool: Ist hier wirklich Baumbestand dazugekommen?</h1></header>
+
+<details class="hilfe" open>
+  <summary>Was wird hier geprüft? (zum Ein- und Ausklappen)</summary>
+  <p>Aus Satellitenbildern (Sentinel-2) wurden <b>58 Flächen</b> gefunden, auf denen zwischen 2015–2019 und 2021–2025 offenbar Bäume dazugekommen sind (Achtung: Das Verfahren verwechselt Zuwachs oft mit Feldfrüchten, die in einem Fenster gerade grün waren; rechnen Sie mit vielen „Nein“). Das Programm kann sich irren. Darum schauen <b>Sie</b> sich jede Fläche auf zwei Luftbildern an. Der <span style="background:#FFD600;padding:0 5px;border:1px solid #000">gelbe Umriss</span> zeigt die Fläche.</p>
+  <ul>
+    <li><b>Ja = Baumzuwachs:</b> links (früher, 2016) Acker, Wiese, Brache oder freie Fläche – rechts (heute, 2025) Wald oder dichte Baumgruppe mit hohen Kronen.</li>
+    <li><b>Nein:</b> schon 2016 Wald (dann ist es kein Zuwachs) – oder rechts steht kein Wald (nur Feld, Wiese, Gebüsch, Solaranlage, Garten, Gewächshaus, anderer Anbau).</li>
+    <li><b>Unsicher / später:</b> Sie können es nicht sicher sagen. Die Fläche bleibt für später markiert.</li>
+  </ul>
+  <p class="klein">Wichtig: Das Luftbild 2025 ist ein aktuelles Sommerbild (Bildflug meist im Juni 2025), das von 2016 ebenfalls ein Sommerbild (in der geprüften Kachel August). Die Bilder 2019 und 2023 sind dagegen aus dem Winter bzw. Frühjahr, dort sind Laubbäume kahl. Nadelwald (dunkelgrün) ist das sicherere Zeichen. Die Luftbild-Jahre passen nicht genau zu den Satelliten-Zeiträumen (2015–2019 / 2021–2025). Die „Einschätzung des Assistenten“ ist nur ein <b>Vorschlag</b> aus einer schnellen Sicht, nicht bestätigt. Alles wird automatisch in diesem Browser gespeichert; zum Sichern bitte „Entscheidungen exportieren“ nutzen.</p>
+  <p class="klein">Tastatur: <kbd>J</kbd> Ja · <kbd>N</kbd> Nein · <kbd>U</kbd> Unsicher · <kbd>←</kbd> zurück · <kbd>→</kbd> weiter · <kbd>O</kbd> Umriss an/aus · <kbd>+</kbd>/<kbd>-</kbd> Ausschnitt (nicht beim Schreiben einer Notiz).</p>
+</details>
+
+<main>
+  <div class="leiste">
+    <button id="zurueck" title="Pfeil links">← Zurück</button>
+    <button id="weiter" title="Pfeil rechts">Weiter →</button>
+    <label class="zeile" style="margin:0">Springe zu Nr. <input type="number" id="sprung" min="1" max="58"> <button id="sprungbtn">Los</button></label>
+    <label class="zeile" style="margin:0">Zeige:
+      <select id="filter">
+        <option value="alle">alle</option><option value="offen">noch offen</option><option value="ja">nur Ja</option><option value="nein">nur Nein</option><option value="unsicher">nur Unsicher</option>
+      </select>
+    </label>
+    <div class="fortschritt"><div id="fortschrittstext"></div><div class="balken"><div id="balken"></div></div></div>
+  </div>
+
+  <div class="bilder">
+    <div class="bildkasten">
+      <div class="bildkopf"><strong id="titelL">Früher</strong>
+        <label class="zeile" style="margin:0">Jahr <select id="jahrL"></select></label></div>
+      <div class="rahmen" id="rahmenL"></div>
+      <div class="bildnote" id="noteL"></div>
+    </div>
+    <div class="bildkasten">
+      <div class="bildkopf"><strong id="titelR">Heute</strong>
+        <label class="zeile" style="margin:0">Jahr <select id="jahrR"></select></label></div>
+      <div class="rahmen" id="rahmenR"></div>
+      <div class="bildnote" id="noteR"></div>
+    </div>
+  </div>
+
+  <div class="leiste">
+    <button id="naeher">＋ Näher heran</button>
+    <button id="weiterweg">－ Mehr Umgebung</button>
+    <button id="umriss" aria-pressed="true">Umriss: an</button>
+    <span class="klein" id="massstab"></span>
+  </div>
+
+  <div class="info">
+    <div class="karte">
+      <h2 id="kopf"></h2>
+      <div id="statusZeile"></div>
+      <div class="vorschlag"><b>Vorschlag des Assistenten (vorläufig, nicht bestätigt):</b> <span id="vorschlag"></span></div>
+      <div id="koord"></div>
+      <div class="klein" style="margin-top:6px">Luftbilder: Geobasis NRW (dl-de/zero-2-0), WMS „nw_hist_dop“ (2010–2023), „nw_idop“ (2024) und „nw_dop“ (2025). Wenn ein Bild grau oder weiß bleibt, gibt es für dieses Jahr dort kein Bild.</div>
+    </div>
+    <div class="karte">
+      <h2>Ihre Entscheidung</h2>
+      <div class="entscheid">
+        <button class="b-ja" id="bJa">✔ Ja<small>Baumzuwachs (J)</small></button>
+        <button class="b-nein" id="bNein">✖ Nein<small>(N)</small></button>
+        <button class="b-unsicher" id="bUns">? Unsicher<small>später (U)</small></button>
+      </div>
+      <label for="ursache">Ursache (optional)</label>
+      <select id="ursache">
+        <option value="">– keine Angabe –</option>
+        <option>unbekannt</option><option>Aufforstung/Pflanzung</option><option>natürliche Wiederbewaldung</option><option>Aufwuchs nach Kahlschlag</option><option>Park/Grünanlage</option><option>Sonstiges</option>
+      </select>
+      <label for="notiz">Notiz zu dieser Fläche</label>
+      <textarea id="notiz" placeholder="z. B. „2016 Wiese, 2025 junger Mischwald“"></textarea>
+      <div class="gesaved" id="gespeichert"></div>
+    </div>
+  </div>
+
+  <div class="karte export">
+    <h2>Sichern und weitergeben</h2>
+    <div class="zeile">
+      <button id="bExport">Entscheidungen exportieren</button>
+      <button id="bImport">Entscheidungen importieren</button>
+      <input type="file" id="datei" accept=".json,application/json" hidden>
+      <button id="bLayer">Finalen Layer herunterladen (nur „Ja“)</button>
+      <button id="bReset" style="border-color:#a40000;color:#a40000">Alle Entscheidungen löschen</button>
+    </div>
+    <div class="klein" id="exportMeld" style="margin-top:6px">Der Export speichert <code>entscheidungen.json</code> in Ihrem Download-Ordner. Danach das Skript <code>scripts/logbuch.py</code> starten (siehe ANLEITUNG.md).</div>
+  </div>
+</main>
+
+<script src="daten.js"></script>
+<script>
+"use strict";
+const WMS = "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop";
+const JAHRE = [2010, 2013, 2016, 2019, 2021, 2023, 2024, 2025];
+const WMS_AKT = "https://www.wms.nrw.de/geobasis/wms_nw_dop";   // 2025 = aktuelles DOP (Bildflug 2025, 10 cm)
+const WMS_IDOP = "https://www.wms.nrw.de/geobasis/wms_nw_idop"; // 2024 = iDOP (Bildflug 20.09.2024, 20 cm)
+const JAHRNOTIZ = {2010:"", 2013:"", 2016:"Bildflug in der geprüften Kachel am 18.08.2016 (Sommer); kann je Kachel abweichen.", 2019:"Bildflug in der geprüften Kachel am 23.02.2019 (Winter, Laubbäume kahl).", 2021:"", 2023:"Frühjahrsbild (in der geprüften Kachel 01.03.2023): Laubbäume noch kahl.", 2024:"iDOP, Bildflug 20.09.2024 (20 cm).", 2025:"Aktuelles DOP, Bildflug 2025 (für alle 73 Flächen geprüft: meist Juni, 5 im Juli, 1 im März), 10 cm."};
+const ZOOMS = [0.5, 0.75, 1, 1.6, 2.5, 4];     // Faktor auf den Rand um die Fläche
+const BILDPX = 900;
+const KEY = "pruef_tool_baumzuwachs_v1";
+const $ = id => document.getElementById(id);
+
+let entsch = {};                 // nr -> {entscheidung, ursache, notiz, zeitstempel}
+try { entsch = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { entsch = {}; }
+const zustand = { idx: 0, zoom: 2, umriss: true, jahrL: 2016, jahrR: 2025, filter: "alle", auto: true };
+const jetzt = () => new Date().toISOString();
+function speichern() {
+  try { localStorage.setItem(KEY, JSON.stringify(entsch)); $("gespeichert").textContent = "✔ automatisch gespeichert (" + new Date().toLocaleTimeString("de-DE") + ")"; }
+  catch (e) { $("gespeichert").textContent = "⚠ Speichern im Browser nicht möglich – bitte exportieren!"; }
+}
+const eintrag = nr => entsch[nr] || {};
+const status = nr => eintrag(nr).entscheidung || "offen";
+const aktuell = () => FLAECHEN[zustand.idx];
+
+function rahmen(f) {            // Quadrat in EPSG:25832, Fläche plus Rand
+  const [x0, y0, x1, y1] = f.bbox;
+  const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
+  const h = (Math.max(x1 - x0, y1 - y0, 250) / 2 + 120) * ZOOMS[zustand.zoom];
+  return { xmin: cx - h, ymin: cy - h, xmax: cx + h, ymax: cy + h, h };
+}
+function wmsUrl(jahr, r) {
+  const quelle = jahr === 2025 ? [WMS_AKT, "nw_dop_rgb"] : jahr === 2024 ? [WMS_IDOP, "nw_idop_rgb"] : [WMS, "nw_hist_dop_" + jahr];
+  return quelle[0] + "?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=" + quelle[1] + "&STYLES=&CRS=EPSG:25832&BBOX=" +
+    [r.xmin, r.ymin, r.xmax, r.ymax].map(v => v.toFixed(2)).join(",") + "&WIDTH=" + BILDPX + "&HEIGHT=" + BILDPX + "&FORMAT=image/jpeg";
+}
+function svgUmriss(f, r) {
+  const s = BILDPX / (2 * r.h);
+  const d = f.ringe.map(ring => "M" + ring.map(p => ((p[0] - r.xmin) * s).toFixed(1) + " " + ((r.ymax - p[1]) * s).toFixed(1)).join("L") + "Z").join(" ");
+  return '<svg viewBox="0 0 ' + BILDPX + ' ' + BILDPX + '" preserveAspectRatio="none" style="display:' + (zustand.umriss ? "block" : "none") + '">' +
+    '<path d="' + d + '" fill="none" stroke="#000" stroke-width="6" stroke-linejoin="round" fill-rule="evenodd"/>' +
+    '<path d="' + d + '" fill="rgba(255,214,0,.10)" stroke="#FFD600" stroke-width="3" stroke-linejoin="round" fill-rule="evenodd"/></svg>';
+}
+function bildSetzen(box, jahr, f, r) {
+  box.innerHTML = '<div class="meld">Bild lädt …</div>';
+  const img = new Image();
+  img.alt = "Luftbild " + jahr + ", Fläche " + f.nr;
+  img.onload = () => { const m = box.querySelector(".meld"); if (m) m.remove(); };
+  img.onerror = () => { const m = box.querySelector(".meld"); if (m) m.textContent = "Bild konnte nicht geladen werden (Internet? Dienst gerade nicht erreichbar?)"; };
+  img.src = wmsUrl(jahr, r);
+  box.appendChild(img);
+  box.insertAdjacentHTML("beforeend", svgUmriss(f, r));
+}
+function runden(v) { return v >= 100 ? Math.round(v / 10) * 10 : Math.round(v); }
+
+function anzeigen() {
+  const f = aktuell(), r = rahmen(f), e = eintrag(f.nr);
+  bildSetzen($("rahmenL"), zustand.jahrL, f, r);
+  bildSetzen($("rahmenR"), zustand.jahrR, f, r);
+  const kopfJahr = (j, wort) => wort + " (Luftbild " + j + ")";
+  $("titelL").textContent = kopfJahr(zustand.jahrL, zustand.jahrL <= zustand.jahrR ? "Früher" : "Heute");
+  $("titelR").textContent = kopfJahr(zustand.jahrR, zustand.jahrR >= zustand.jahrL ? "Heute" : "Früher");
+  $("noteL").textContent = "Geobasis NRW, Jahrgang " + zustand.jahrL + (JAHRNOTIZ[zustand.jahrL] ? ". " + JAHRNOTIZ[zustand.jahrL] : "");
+  $("noteR").textContent = "Geobasis NRW, Jahrgang " + zustand.jahrR + (JAHRNOTIZ[zustand.jahrR] ? ". " + JAHRNOTIZ[zustand.jahrR] : "");
+  $("massstab").textContent = "Bildausschnitt ca. " + runden(2 * r.h) + " m × " + runden(2 * r.h) + " m";
+  $("kopf").textContent = "Fläche Nr. " + f.nr + " von " + FLAECHEN.length + " – " + String(f.ha).replace(".", ",") + " ha";
+  const st = status(f.nr), txt = { ja: "✔ Ja = Baumzuwachs", nein: "✖ Nein", unsicher: "? Unsicher / später", offen: "○ noch offen" }[st];
+  $("statusZeile").innerHTML = 'Ihr Stand: <span class="status st-' + st + '">' + txt + '</span>';
+  $("vorschlag").textContent = f.pruefung;
+  const osm = "https://www.openstreetmap.org/?mlat=" + f.lat + "&mlon=" + f.lon + "#map=17/" + f.lat + "/" + f.lon;
+  $("koord").innerHTML = "Koordinaten (WGS84): " + f.lat.toFixed(5).replace(".", ",") + " N, " + f.lon.toFixed(5).replace(".", ",") + " O · <a href='" + osm + "' target='_blank' rel='noopener'>auf OpenStreetMap ansehen</a>";
+  [["bJa", "ja"], ["bNein", "nein"], ["bUns", "unsicher"]].forEach(([id, s]) => { $(id).classList.toggle("aktiv", st === s); $(id).setAttribute("aria-pressed", st === s); });
+  $("ursache").value = e.ursache || "";
+  $("notiz").value = e.notiz || "";
+  $("sprung").value = f.nr;
+  $("gespeichert").textContent = "";
+  fortschritt();
+}
+function fortschritt() {
+  const n = FLAECHEN.length;
+  let ja = 0, nein = 0, uns = 0;
+  FLAECHEN.forEach(f => { const s = status(f.nr); if (s === "ja") ja++; else if (s === "nein") nein++; else if (s === "unsicher") uns++; });
+  const ent = ja + nein;
+  $("fortschrittstext").innerHTML = "<b>" + ent + " von " + n + " entschieden</b> (Ja: " + ja + ", Nein: " + nein + ") · unsicher: " + uns + " · offen: " + (n - ent - uns);
+  $("balken").style.width = (100 * ent / n) + "%";
+}
+function inFilter(f) { const fl = zustand.filter; return fl === "alle" || status(f.nr) === fl; }
+function geheZu(idx) { zustand.idx = Math.max(0, Math.min(FLAECHEN.length - 1, idx)); anzeigen(); }
+function schritt(dir, von) {
+  let i = (von === undefined ? zustand.idx : von) + dir;
+  while (i >= 0 && i < FLAECHEN.length && !inFilter(FLAECHEN[i])) i += dir;
+  if (i < 0 || i >= FLAECHEN.length) { $("gespeichert").textContent = "Keine weitere Fläche in dieser Auswahl."; return false; }
+  geheZu(i); return true;
+}
+function entscheide(s) {
+  const f = aktuell(), von = zustand.idx;
+  const e = entsch[f.nr] = Object.assign({}, eintrag(f.nr));
+  e.entscheidung = e.entscheidung === s ? null : s;    // zweiter Klick nimmt die Entscheidung zurück
+  if (!e.entscheidung) delete e.entscheidung;
+  e.zeitstempel = jetzt(); speichern();
+  if (e.entscheidung && zustand.auto) { if (!schritt(1, von)) anzeigen(); } else anzeigen();
+  $("gespeichert").textContent = "✔ gespeichert";
+}
+function feldAendern() {
+  const f = aktuell(), e = entsch[f.nr] = Object.assign({}, eintrag(f.nr));
+  e.ursache = $("ursache").value; e.notiz = $("notiz").value; e.zeitstempel = jetzt();
+  if (!e.ursache) delete e.ursache; if (!e.notiz) delete e.notiz;
+  speichern();
+}
+function herunterladen(name, text, typ) {
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([text], { type: typ || "application/json" }));
+  a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+function exportDaten() {
+  const liste = FLAECHEN.filter(f => entsch[f.nr] && (entsch[f.nr].entscheidung || entsch[f.nr].notiz || entsch[f.nr].ursache)).map(f => {
+    const e = entsch[f.nr];
+    return { nr: f.nr, entscheidung: e.entscheidung || null, ursache: e.ursache || "", notiz: e.notiz || "", zeitstempel: e.zeitstempel || "" };
+  });
+  return { erstellt: jetzt(), hinweis: "Entscheidung: ja = Baumzuwachs, nein, unsicher. Sichtprüfung des Nutzers an Luftbildern.", entscheidungen: liste };
+}
+
+// ---- Bedienung
+$("zurueck").onclick = () => schritt(-1);
+$("weiter").onclick = () => schritt(1);
+$("sprungbtn").onclick = () => { const n = parseInt($("sprung").value, 10); if (n >= 1 && n <= FLAECHEN.length) geheZu(n - 1); };
+$("sprung").onkeydown = ev => { if (ev.key === "Enter") $("sprungbtn").click(); };
+$("filter").onchange = () => { zustand.filter = $("filter").value; if (!inFilter(aktuell())) { if (!schritt(1)) schritt(-1); } };
+$("bJa").onclick = () => entscheide("ja");
+$("bNein").onclick = () => entscheide("nein");
+$("bUns").onclick = () => entscheide("unsicher");
+$("ursache").onchange = feldAendern;
+$("notiz").oninput = () => { clearTimeout(window._t); window._t = setTimeout(feldAendern, 300); };
+$("naeher").onclick = () => { if (zustand.zoom > 0) { zustand.zoom--; anzeigen(); } };
+$("weiterweg").onclick = () => { if (zustand.zoom < ZOOMS.length - 1) { zustand.zoom++; anzeigen(); } };
+function umrissUmschalten() {
+  zustand.umriss = !zustand.umriss; $("umriss").textContent = "Umriss: " + (zustand.umriss ? "an" : "aus"); $("umriss").setAttribute("aria-pressed", zustand.umriss);
+  document.querySelectorAll(".rahmen svg").forEach(s => s.style.display = zustand.umriss ? "block" : "none");
+}
+$("umriss").onclick = umrissUmschalten;
+JAHRE.forEach(j => { ["jahrL", "jahrR"].forEach(id => { const o = document.createElement("option"); o.value = o.textContent = j; $(id).appendChild(o); }); });
+$("jahrL").value = zustand.jahrL; $("jahrR").value = zustand.jahrR;
+$("jahrL").onchange = () => { zustand.jahrL = +$("jahrL").value; anzeigen(); };
+$("jahrR").onchange = () => { zustand.jahrR = +$("jahrR").value; anzeigen(); };
+$("bExport").onclick = () => {
+  const d = exportDaten(); herunterladen("entscheidungen.json", JSON.stringify(d, null, 1));
+  $("exportMeld").textContent = "Exportiert: " + d.entscheidungen.length + " Einträge in entscheidungen.json (Download-Ordner).";
+};
+$("bImport").onclick = () => $("datei").click();
+$("datei").onchange = async () => {
+  const file = $("datei").files[0]; if (!file) return;
+  try {
+    const d = JSON.parse(await file.text()); const l = Array.isArray(d) ? d : d.entscheidungen;
+    if (!Array.isArray(l)) throw new Error("Format");
+    if (!confirm(l.length + " Einträge einlesen? Vorhandene Einträge mit gleicher Nr. werden überschrieben.")) return;
+    let n = 0;
+    l.forEach(x => {
+      const nr = +x.nr; if (!FLAECHEN.some(f => f.nr === nr)) return;
+      const e = { zeitstempel: x.zeitstempel || jetzt() };
+      if (["ja", "nein", "unsicher"].includes(x.entscheidung)) e.entscheidung = x.entscheidung;
+      if (x.ursache) e.ursache = x.ursache; if (x.notiz) e.notiz = x.notiz;
+      entsch[nr] = e; n++;
+    });
+    speichern(); anzeigen(); $("exportMeld").textContent = n + " Einträge importiert.";
+  } catch (err) { alert("Die Datei konnte nicht gelesen werden. Ist es eine entscheidungen.json aus diesem Tool?"); }
+  $("datei").value = "";
+};
+$("bLayer").onclick = () => {
+  const feats = FLAECHEN.filter(f => status(f.nr) === "ja").map(f => ({
+    type: "Feature", properties: { nr: f.nr, flaeche_ha: f.ha, ursache: eintrag(f.nr).ursache || "", notiz: eintrag(f.nr).notiz || "" },
+    geometry: { type: "Polygon", coordinates: f.ringe4326 }
+  }));
+  if (!feats.length) { alert("Noch keine Fläche mit „Ja“ – es gibt nichts herunterzuladen."); return; }
+  herunterladen("baumzuwachs_final.geojson", JSON.stringify({ type: "FeatureCollection", features: feats }), "application/geo+json");
+  $("exportMeld").textContent = feats.length + " „Ja“-Flächen als baumzuwachs_final.geojson heruntergeladen (WGS84).";
+};
+$("bReset").onclick = () => {
+  if (confirm("Wirklich ALLE Entscheidungen in diesem Browser löschen? Vorher am besten exportieren.")) { entsch = {}; localStorage.removeItem(KEY); anzeigen(); }
+};
+document.addEventListener("keydown", ev => {
+  const t = ev.target.tagName; if (t === "TEXTAREA" || t === "INPUT" || t === "SELECT" || ev.ctrlKey || ev.metaKey || ev.altKey) return;
+  const k = ev.key.toLowerCase();
+  if (k === "j") entscheide("ja"); else if (k === "n") entscheide("nein"); else if (k === "u") entscheide("unsicher");
+  else if (ev.key === "ArrowRight") schritt(1); else if (ev.key === "ArrowLeft") schritt(-1);
+  else if (k === "o") umrissUmschalten(); else if (ev.key === "+") $("naeher").click(); else if (ev.key === "-") $("weiterweg").click();
+  else return;
+  ev.preventDefault();
+});
+// Start: erste offene Fläche
+const ersteOffene = FLAECHEN.findIndex(f => status(f.nr) === "offen");
+zustand.idx = ersteOffene >= 0 ? ersteOffene : 0;
+anzeigen();
+</script>
+</body>
+</html>
