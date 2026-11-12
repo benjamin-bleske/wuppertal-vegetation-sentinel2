@@ -1,0 +1,58 @@
+{
+ "version": 8,
+ "name": "test_geltungsbereich",
+ "metadata": {
+  "carmaConf": {
+   "layerInfo": {
+    "title": "Testgeltungsbereich (gestrichelte Linie wie im Bebauungsplan)",
+    "description": "Reiner Testlayer fuer Liniengeometrie: ein frei erfundener Geltungsbereich in Wuppertal, dargestellt als dicke schwarze gestrichelte Linie wie die Grenze des raeumlichen Geltungsbereichs in Bebauungsplaenen. Keine echten Plandaten, Lage und Form sind Naeherungswerte.",
+    "keywords": [
+     "carmaconf://infoBoxMapping:header: p[\"Name\"]",
+     "carmaconf://infoBoxMapping:title: p[\"Plan\"]",
+     "carmaconf://infoBoxMapping:subtitle: \"Testdaten\"",
+     "carmaconf://infoBoxMapping:additionalInfo: \"Nur zum Testen der Liniendarstellung\""
+    ],
+    "tags": [
+     "Test",
+     "Linien",
+     "Geltungsbereich"
+    ]
+   },
+   "instant": true
+  }
+ },
+ "sources": {
+  "gb": {
+   "type": "geojson",
+   "data": "https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/geojson/test_geltungsbereich.geojson"
+  }
+ },
+ "layers": [
+  {
+   "id": "gb-hit",
+   "type": "fill",
+   "source": "gb",
+   "paint": {
+    "fill-color": "#000000",
+    "fill-opacity": 0.02
+   }
+  },
+  {
+   "id": "gb-line",
+   "type": "line",
+   "source": "gb",
+   "layout": {
+    "line-cap": "butt",
+    "line-join": "miter"
+   },
+   "paint": {
+    "line-color": "#000000",
+    "line-width": 5,
+    "line-dasharray": [
+     3,
+     1.2
+    ]
+   }
+  }
+ ]
+}

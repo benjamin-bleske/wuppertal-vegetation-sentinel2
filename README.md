@@ -31,6 +31,11 @@ Link auf das Portalfenster ziehen (https://digital-twin-wuppertal-live.github.io
 - [testPunktGeometrie: 8 Testpunkte als dunkelrote Kreise](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/test_punkte.style.json) 
   `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/test_punkte.style.json`
 
+**Test Geltungsbereich**
+
+- [testGeltungsbereich: gestrichelte Linie wie im Bebauungsplan (frei erfundene Fläche)](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/test_geltungsbereich.style.json) 
+  `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/test_geltungsbereich.style.json`
+
 **Zeitreihe mit Filter-Buttons (eine Datei, 11 Jahre)**
 
 - [Zeitreihe 2015–2025 mit Jahres-Buttons](https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/vegetation_zeitreihe.style.json) 
@@ -134,3 +139,6 @@ Das [Logbuch als PDF](https://benjamin-bleske.github.io/wuppertal-vegetation-sen
 
 ## testPunktGeometrie
 Reiner Testlayer für Punktgeometrie, ohne fachliche Aussage: 8 frei gesetzte Punkte (Näherungswerte) in Wuppertal-Barmen, dargestellt als dunkelrote Kreise (Radius 6, Rand `#7f0000`). Style-URL: `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/test_punkte.style.json`. GeoJSON: [`geojson/test_punkte.geojson`](docs/geojson/test_punkte.geojson), Infobox-Felder `Name`, `Nr`.
+
+## testGeltungsbereich
+Reiner Testlayer für Liniengeometrie, ohne fachliche Aussage: ein frei erfundener Geltungsbereich in Wuppertal (Näherungswerte), dargestellt wie in Bebauungsplänen als dicke schwarze gestrichelte Linie (Breite 5, Strich 3 : Lücke 1,2). Style-URL: `https://benjamin-bleske.github.io/wuppertal-vegetation-sentinel2/styles/test_geltungsbereich.style.json`. GeoJSON: [`geojson/test_geltungsbereich.geojson`](docs/geojson/test_geltungsbereich.geojson), Infobox-Felder `Name`, `Plan`. Die Fläche ist fast unsichtbar gefüllt (Deckkraft 0,02), damit sie anklickbar bleibt.
